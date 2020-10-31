@@ -4,6 +4,8 @@ import React, {useEffect, useState} from "react";
 import Content from "./Content";
 import {Input} from "reakit/Input";
 import {createUseStyles} from "react-jss";
+import BackLink from "./BackLink";
+import {Routes} from "./Router/routes";
 
 const useStyles = createUseStyles({
     ul: {
@@ -41,6 +43,9 @@ export const PickTransactions = ({title, onPick}: Props) => {
 
     return (
         <Content>
+            <nav>
+                <BackLink to={Routes.Introduction} />
+            </nav>
             <h1>{title} payments</h1>
 
             <div>

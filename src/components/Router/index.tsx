@@ -8,7 +8,8 @@ import AnnualPayments from "../../pages/Onboarding/steps/AnnualPayments";
 import Homepage from "../../pages/Homepage";
 import NewDream from "../../pages/Dream/new";
 import { DreamsContextProvider } from "../../context/dreams";
-import EmergencyIntro from "../../pages/Onboarding/steps/emergencyIntro";
+import EmergencyIntro from "../../pages/Onboarding/steps/EmergencyIntro";
+import Introduction from "../../pages/Onboarding/steps/Introduction";
 import SummaryPage from "../../pages/Onboarding/steps/SummaryPage";
 
 const Router = () => {
@@ -25,6 +26,9 @@ const Router = () => {
         </Route>
         <Route path={Routes.Onboarding_01}>
           <Onboarding01 />
+        </Route>
+        <Route path={Routes.Introduction}>
+          <Introduction />
         </Route>
         <Route path={Routes.NewDream}>
           <DreamsContextProvider>
