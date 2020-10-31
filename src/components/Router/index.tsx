@@ -19,57 +19,55 @@ import DasboradPage from '../../pages/Dashboard/DashboardPage';
 
 const Router = () => {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path={Routes.Homepage} exact>
-          <DreamsContextProvider>
+    <DreamsContextProvider>
+      <BrowserRouter>
+        <Switch>
+          <Route path={Routes.Homepage} exact>
             <Homepage />
-          </DreamsContextProvider>
-        </Route>
-        <Route path={Routes.Onboarding} exact>
-          <Onboarding />
-        </Route>
-        <Route path={Routes.Onboarding_01}>
-          <Onboarding01 />
-        </Route>
-        <Route path={Routes.Introduction}>
-          <Introduction />
-        </Route>
-        <Route path={Routes.NewDream}>
-          <DreamsContextProvider>
+          </Route>
+          <Route path={Routes.Onboarding} exact>
+            <Onboarding />
+          </Route>
+          <Route path={Routes.Onboarding_01}>
+            <Onboarding01 />
+          </Route>
+          <Route path={Routes.Introduction}>
+            <Introduction />
+          </Route>
+          <Route path={Routes.NewDream}>
             <NewDream />
-          </DreamsContextProvider>
-        </Route>
-        <Route path={Routes.DreamDetail}>
-          <DreamsContextProvider>
-            <DreamDetail />
-          </DreamsContextProvider>
-        </Route>
-        <Route path={Routes.Montly_Payments}>
-          <MontlyPayments />
-        </Route>
-        <Route path={Routes.Annual_Payments}>
-          <AnnualPayments />
-        </Route>
-        <Route path={Routes.Emergency_intro} exact>
-          <EmergencyIntro />
-        </Route>
-        <Route path={Routes.WeeklyReview}>
-          <WeeklyReview />
-        </Route>
-        <Route path={Routes.Summary}>
-          <SummaryPage />
-        </Route>
-        <Route path={Routes.Dashboard}>
-          <DasboradPage />
-        </Route>
-        <Route path={Routes.Emergency_add}>
-          <EmergencyFundContextProvider>
-            <EmergencyAdd />
-          </EmergencyFundContextProvider>
-        </Route>
-      </Switch>
-    </BrowserRouter>
+          </Route>
+          <Route path={Routes.DreamDetail}>
+            <DreamsContextProvider>
+              <DreamDetail />
+            </DreamsContextProvider>
+          </Route>
+          <Route path={Routes.Montly_Payments}>
+            <MontlyPayments />
+          </Route>
+          <Route path={Routes.Annual_Payments}>
+            <AnnualPayments />
+          </Route>
+          <Route path={Routes.Emergency_intro} exact>
+            <EmergencyIntro />
+          </Route>
+          <Route path={Routes.WeeklyReview}>
+            <WeeklyReview />
+          </Route>
+          <Route path={Routes.Summary}>
+            <SummaryPage />
+          </Route>
+          <Route path={Routes.Dashboard}>
+            <DasboradPage />
+          </Route>
+          <Route path={Routes.Emergency_add}>
+            <EmergencyFundContextProvider>
+              <EmergencyAdd />
+            </EmergencyFundContextProvider>
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    </DreamsContextProvider>
   );
 };
 

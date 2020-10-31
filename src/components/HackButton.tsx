@@ -2,6 +2,7 @@ import * as React from 'react';
 import { createUseStyles } from 'react-jss';
 import { useState } from 'react';
 import { useRef } from 'react';
+import { Routes } from './Router/routes';
 
 const useStyles = createUseStyles({
   button: {
@@ -79,6 +80,16 @@ const HackButton = ({ onMonthlyReview, onNewTransaction, onWeeklyReview }: Props
           </li>
           <li>
             <button onClick={onWeeklyReview}>Monthly review</button>
+          </li>
+          <li>
+            <button
+              onClick={() => {
+                localStorage.clear();
+                window.location.replace(Routes.Homepage);
+              }}
+            >
+              Clear
+            </button>
           </li>
         </ul>
       ) : null}

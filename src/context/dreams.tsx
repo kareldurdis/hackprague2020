@@ -1,12 +1,6 @@
-import React, {
-  createContext,
-  Dispatch,
-  memo,
-  PropsWithChildren,
-  SetStateAction,
-  useContext,
-  useState,
-} from 'react';
+import React, { createContext, memo, PropsWithChildren, useContext, useState } from 'react';
+import dreamsMock from '../__mocks__/dreams';
+import { useStorage } from '../utils';
 
 export interface Dream {
   id: string;
@@ -19,23 +13,31 @@ export interface Dream {
 
 export interface DreamsContextValue {
   dreams: Dream[];
-  newDream?: Dream | null;
-  setNewDream: Dispatch<SetStateAction<Dream | null>>;
+  addNewDream: (dream: Dream) => void;
+  onboarded: boolean;
+  setIsOnboarded: (onboarded: boolean) => void;
 }
 
 const DreamsContext = createContext<DreamsContextValue>({
   dreams: [],
-  newDream: null,
-  setNewDream: () => {},
+  addNewDream: () => {},
+  onboarded: false,
+  setIsOnboarded: () => {},
 });
 
 interface DreamsContextProviderProps {}
+
 export const DreamsContextProvider = memo(
   ({ children }: PropsWithChildren<DreamsContextProviderProps>) => {
-    const [newDream, setNewDream] = useState<Dream | null>(null);
+    const [dreams, setDreams] = useStorage('dreams', dreamsMock);
+    const [onboarded, setIsOnboarded] = useStorage('onboarded', false);
+
+    const addNewDream = (dream: Dream) => {
+      return setDreams((state) => [...(state || []), dream]);
+    };
 
     return (
-      <DreamsContext.Provider value={{ dreams: [], newDream, setNewDream }}>
+      <DreamsContext.Provider value={{ dreams, addNewDream, onboarded, setIsOnboarded }}>
         {children}
       </DreamsContext.Provider>
     );

@@ -28,7 +28,7 @@ const EmergencyIntro = () => {
       <p className={classes.p}>Emergency fund will help you cover unexpected expenses.</p>
       <Link to={Routes.Emergency_add}>Add</Link>
       {/* TODO: Link to summary */}
-      <NextLink to={Routes.Emergency_intro} />
+      <NextLink to={Routes.Summary} />
     </Content>
   );
 };

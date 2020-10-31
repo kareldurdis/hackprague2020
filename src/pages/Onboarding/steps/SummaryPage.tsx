@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Routes } from '../../../components/Router/routes';
 import { createUseStyles } from 'react-jss';
 import { formatEuro, sumIncomes } from '../../../utils';
+import { useDreamsContext } from '../../../context/dreams';
 
 const useStyles = createUseStyles({
   card: {
@@ -40,6 +41,7 @@ const SpendCard = ({ name, amount, monthly }: Props) => {
 
 const SummaryPage = () => {
   const income = sumIncomes();
+  const { setIsOnboarded } = useDreamsContext();
   const payments = {
     monthly: 50,
     dreams: 200,
@@ -55,7 +57,9 @@ const SummaryPage = () => {
       <SpendCard name={'Dreams payments'} amount={payments.dreams} />
       <SpendCard name={'Annual payments'} amount={payments.annual} monthly={payments.annual / 12} />
       Spending budget {formatEuro(budget)}
-      <Link to={Routes.Dashboard}>Continue</Link>
+      <Link to={Routes.Dashboard} onClick={() => setIsOnboarded(true)}>
+        Continue
+      </Link>
     </Content>
   );
 };

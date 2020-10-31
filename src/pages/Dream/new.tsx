@@ -12,9 +12,13 @@ import { useDreamsContext } from '../../context/dreams';
 import { v4 as uuid } from 'uuid';
 import dayjs from 'dayjs';
 import getNumber from '../../utils/getNumber';
+import { useHistory } from 'react-router-dom';
+import Router from '../../components/Router';
+import { Routes } from '../../components/Router/routes';
 
 const NewDream = () => {
-  const { setNewDream } = useDreamsContext();
+  const { addNewDream } = useDreamsContext();
+  const history = useHistory();
 
   const form = useFormState({
     values: { name: '', cost: 0, image: null, payment: 0 },
@@ -46,9 +50,8 @@ const NewDream = () => {
         payment,
         end: end.toDate(),
       };
-      setNewDream(newDream);
-
-      // TODO: Redirect to introduction
+      addNewDream(newDream);
+      history.push(Routes.Onboarding_01);
     },
   });
 
