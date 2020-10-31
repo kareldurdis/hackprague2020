@@ -12,9 +12,12 @@ import { v4 as uuid } from 'uuid';
 import Content from '../../../components/Content';
 import { useEmergencyFundContext } from '../../../context/emergencyFund';
 import getNumber from '../../../utils/getNumber';
+import { useHistory } from 'react-router-dom';
+import { Routes } from '../../../components/Router/routes';
 
 const EmergencyAdd = () => {
   const { setEmergencyFund } = useEmergencyFundContext();
+  const history = useHistory();
 
   const form = useFormState({
     values: { cost: 0, payment: 0 },
@@ -43,8 +46,7 @@ const EmergencyAdd = () => {
         end: end.toDate(),
       };
       setEmergencyFund(newEmergencyFund);
-
-      // TODO: Redirect to summary
+      history.push(Routes.Summary);
     },
   });
 
