@@ -1,4 +1,5 @@
 import { Dream } from "../context/dreams";
+import CarImage from "../assets/car.jpg";
 
 const dreams: Dream[] = [
   {
@@ -10,6 +11,7 @@ const dreams: Dream[] = [
     id: "2",
     name: "Car",
     cost: 12000,
+    image: CarImage,
   },
   {
     id: "3",

@@ -7,6 +7,7 @@ import MontlyPayments from "../../pages/Onboarding/steps/MontlyPayments";
 import AnnualPayments from "../../pages/Onboarding/steps/AnnualPayments";
 import Homepage from "../../pages/Homepage";
 import NewDream from "../../pages/Dream/new";
+import DreamDetail from "../../pages/Dream/detail";
 import { DreamsContextProvider } from "../../context/dreams";
 import EmergencyIntro from "../../pages/Onboarding/steps/EmergencyIntro";
 import EmergencyAdd from "../../pages/Onboarding/steps/emergencyAdd";
@@ -37,6 +38,11 @@ const Router = () => {
         <Route path={Routes.NewDream}>
           <DreamsContextProvider>
             <NewDream />
+          </DreamsContextProvider>
+        </Route>
+        <Route path={Routes.DreamDetail}>
+          <DreamsContextProvider>
+            <DreamDetail />
           </DreamsContextProvider>
         </Route>
         <Route path={Routes.Montly_Payments}>
