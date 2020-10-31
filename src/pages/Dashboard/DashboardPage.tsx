@@ -1,69 +1,36 @@
 import * as React from 'react';
 import {createUseStyles} from "react-jss";
-import { Checkbox } from 'reakit';
+import {Checkbox} from 'reakit';
 import Content from '../../components/Content';
 import DreamCard from '../../components/DreamCard';
 import {transactions} from "../../db/transactions";
+import {formatEuro} from "../../utils";
+import {ProgressBar} from "../../components/ProgressBar";
 
 const useStyles = createUseStyles({
-    slider: {
+    table: {
         width: '100%',
-        background: 'black',
-        position: 'relative',
-        height: 5,
-    },
-    inner: {
-        position: 'absolute',
-        left: 0,
-        top: 0,
-        height: '100%',
-    },
-    goal: {
-        height: 9,
-        top: -2,
-        width: 6,
-        marginLeft: -3,
-        background: 'brown',
-        zIndex: 2,
-        position: 'relative',
     }
 });
 
-interface Props {
-    current: number,
-    total: number,
-    goal?: number,
-}
-
-const ProgressBar = ({ current, total, goal }: Props) => {
-    const classes = useStyles();
-
-    const progress = current / total * 100;
-    const goalProgress = goal !== undefined ? goal / total * 100 : undefined;
-
-    const isOk = goalProgress === undefined || progress <= goalProgress;
-
-    return <div className={classes.slider}><div className={classes.inner} style={{ width: `${progress}%`, background: isOk ? 'green' : 'red' }} /> {goal !== undefined ? <div className={classes.goal} style={{ left: `${goalProgress}%` } } /> : null} </div>;
-}
-
 const DasboradPage = () => {
-
+    const classes = useStyles();
     const budget = 322;
-    const spent = 279;
-    const dayOfWeek = 3;
+    const spent = 170;
+    const dayOfWeek = 4;
     const available = budget - spent;
 
     return (
         <Content>
             <h1>Dashboard</h1>
             <h2>Weekly spending</h2>
-            <table>
+            <table className={classes.table}>
                 <tr>
                     <td>
                         Weekly budget
                     </td>
                     <td>
-                        {budget}
+                        {formatEuro(budget)}
                     </td>
                 </tr>
                 <tr>
@@ -71,27 +38,32 @@ const DasboradPage = () => {
                         Your spendings
                     </td>
                     <td>
-                        {spent}
+                        {formatEuro(spent)}
                     </td>
                 </tr>
             </table>
+            <br />
 
-            <ProgressBar current={spent} total={budget} goal={100 / 7 * dayOfWeek} />
+            <ProgressBar current={spent} total={budget} goal={(budget / 7 * dayOfWeek)} />
 
-            {available >= 0 ? <>You're doing good! You can spend {available} this week.</> : <>Vedeš si blbě</>}
+            <br />
+
+            {available >= 0 ? <>You're doing good! You can spend {formatEuro(available)} this week.</> : <>Vedeš si blbě</>}
 
             <button>Show Summary</button>
 
+            <br />
+
             <DreamCard dream={{ cost: 1000, name: 'Lambo', id: 'fake' }} />
 
-            <h2>Payment History</h2>
+            <h3>Payment History</h3>
             <ul>
                 {transactions.slice(0, 3).map((transaction) => {
                     return <li key={transaction.id}>{transaction.description}</li>
                 })}
             </ul>
 
-            <h2>Recommended</h2>
+            <h3>Recommended</h3>
             <label><Checkbox checked /> Emergency fund</label>
             <label><Checkbox /> Life insurance</label>
 
