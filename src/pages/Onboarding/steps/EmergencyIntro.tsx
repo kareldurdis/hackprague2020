@@ -1,9 +1,10 @@
 import React, { memo } from "react";
 import { createUseStyles } from "react-jss";
-import { Link } from "react-router-dom";
 import Content from "../../../components/Content";
 import { Routes } from "../../../components/Router/routes";
 import EmergencyFundLogo from "../../../assets/emergency-fund.jpg";
+import NextLink from "../../../components/NextLink";
+import { Link } from "react-router-dom";
 
 const useStyles = createUseStyles({
   image: {
@@ -32,6 +33,8 @@ const EmergencyIntro = () => {
         Emergency fund will help you cover unexpected expenses.
       </p>
       <Link to={Routes.Emergency_add}>Add</Link>
+      {/* TODO: Link to summary */}
+      <NextLink to={Routes.Emergency_intro} />
     </Content>
   );
 };

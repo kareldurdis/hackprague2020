@@ -3,12 +3,15 @@ import { Route, BrowserRouter, Switch } from "react-router-dom";
 import { Routes } from "./routes";
 import Onboarding from "../../pages/Onboarding";
 import Onboarding01 from "../../pages/Onboarding/steps/01";
+import MontlyPayments from "../../pages/Onboarding/steps/MontlyPayments";
+import AnnualPayments from "../../pages/Onboarding/steps/AnnualPayments";
 import Homepage from "../../pages/Homepage";
 import NewDream from "../../pages/Dream/new";
 import { DreamsContextProvider } from "../../context/dreams";
-import EmergencyIntro from "../../pages/Onboarding/steps/emergencyIntro";
+import EmergencyIntro from "../../pages/Onboarding/steps/EmergencyIntro";
 import EmergencyAdd from "../../pages/Onboarding/steps/emergencyAdd";
 import { EmergencyFundContextProvider } from "../../context/emergencyFund";
+import Introduction from "../../pages/Onboarding/steps/Introduction";
 
 const Router = () => {
   return (
@@ -25,10 +28,19 @@ const Router = () => {
         <Route path={Routes.Onboarding_01}>
           <Onboarding01 />
         </Route>
+        <Route path={Routes.Introduction}>
+          <Introduction />
+        </Route>
         <Route path={Routes.NewDream}>
           <DreamsContextProvider>
             <NewDream />
           </DreamsContextProvider>
+        </Route>
+        <Route path={Routes.Montly_Payments}>
+          <MontlyPayments />
+        </Route>
+        <Route path={Routes.Annual_Payments}>
+          <AnnualPayments />
         </Route>
         <Route path={Routes.Emergency_intro} exact>
           <EmergencyIntro />
