@@ -9,7 +9,9 @@ import Homepage from "../../pages/Homepage";
 import NewDream from "../../pages/Dream/new";
 import { DreamsContextProvider } from "../../context/dreams";
 import EmergencyIntro from "../../pages/Onboarding/steps/EmergencyIntro";
+
 import Introduction from "../../pages/Onboarding/steps/Introduction";
+import DasboradPage from "../../pages/Dashboard/DashboardPage";
 
 const Router = () => {
   return (
@@ -42,6 +44,9 @@ const Router = () => {
         </Route>
         <Route path={Routes.Emergency_intro}>
           <EmergencyIntro />
+        </Route>
+        <Route path={Routes.Dashboard}>
+          <DasboradPage />
         </Route>
       </Switch>
     </BrowserRouter>
