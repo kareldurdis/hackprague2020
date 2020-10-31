@@ -1,8 +1,9 @@
 import React, { memo } from "react";
 import { createUseStyles } from "react-jss";
-import { Link } from "react-router-dom";
 import Content from "../../../components/Content";
 import { Routes } from "../../../components/Router/routes";
+import BackLink from "../../../components/BackLink";
+import NextLink from "../../../components/NextLink";
 
 const useStyles = createUseStyles({
     p: {
@@ -15,8 +16,9 @@ const Introduction = () => {
 
     return (
         <Content>
+            <BackLink to={Routes.Onboarding_01} />
             <p className={classes.p}>In order to reach your goals, we need to get to know your finances a little better</p>
-            <Link to={Routes.Montly_Payments}>Next -&gt;</Link>
+            <NextLink to={Routes.Montly_Payments} />
         </Content>
     );
 };
