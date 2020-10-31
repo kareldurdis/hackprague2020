@@ -9,6 +9,8 @@ import Homepage from "../../pages/Homepage";
 import NewDream from "../../pages/Dream/new";
 import { DreamsContextProvider } from "../../context/dreams";
 import EmergencyIntro from "../../pages/Onboarding/steps/EmergencyIntro";
+import EmergencyAdd from "../../pages/Onboarding/steps/emergencyAdd";
+import { EmergencyFundContextProvider } from "../../context/emergencyFund";
 import Introduction from "../../pages/Onboarding/steps/Introduction";
 import SummaryPage from "../../pages/Onboarding/steps/SummaryPage";
 
@@ -41,11 +43,16 @@ const Router = () => {
         <Route path={Routes.Annual_Payments}>
           <AnnualPayments />
         </Route>
-        <Route path={Routes.Emergency_intro}>
+        <Route path={Routes.Emergency_intro} exact>
           <EmergencyIntro />
         </Route>
         <Route path={Routes.Summary}>
           <SummaryPage />
+        </Route>
+        <Route path={Routes.Emergency_add}>
+          <EmergencyFundContextProvider>
+            <EmergencyAdd />
+          </EmergencyFundContextProvider>
         </Route>
       </Switch>
     </BrowserRouter>
