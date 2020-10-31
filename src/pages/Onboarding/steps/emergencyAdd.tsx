@@ -29,9 +29,13 @@ const EmergencyAdd = () => {
       }
     },
     onSubmit: (values) => {
-      const payment = getNumber(form.values.payment);
+      const rawPayment = getNumber(values.payment);
+      const cost = getNumber(values.cost);
+      const payment = Math.min(rawPayment, cost);
+
       const months = payment > 0 ? Math.ceil(cost / payment) : 0;
       const end = dayjs().add(months, "month");
+
       const newEmergencyFund = {
         id: uuid(),
         cost: getNumber(values.cost),
@@ -44,8 +48,9 @@ const EmergencyAdd = () => {
     },
   });
 
-  const payment = getNumber(form.values.payment);
+  const rawPayment = getNumber(form.values.payment);
   const cost = getNumber(form.values.cost);
+  const payment = Math.min(rawPayment, cost);
   const duration = payment > 0 ? Math.ceil(cost / payment) : 0;
 
   return (
@@ -65,7 +70,14 @@ const EmergencyAdd = () => {
         <FormMessage {...form} name="cost" />
 
         <div>{payment}&nbsp;€ / month</div>
-        <FormInput {...form} name="payment" type="range" min="0" max="1000" />
+        <FormInput
+          {...form}
+          name="payment"
+          type="range"
+          min="0"
+          max={cost}
+          value={payment}
+        />
         <FormMessage {...form} name="payment" />
         <div>{duration} months</div>
 
