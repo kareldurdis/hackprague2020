@@ -14,6 +14,7 @@ export interface Dream {
   cost: number;
   payment?: number;
   end?: Date;
+  image?: string;
 }
 
 export interface DreamsContextValue {
