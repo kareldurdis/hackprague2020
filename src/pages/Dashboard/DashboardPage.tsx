@@ -19,7 +19,8 @@ const DasboradPage = () => {
   const spent = 170;
   const dayOfWeek = 4;
   const [budget] = useStorage('budget', 0);
-  const available = budget - spent;
+  const weeklyBudget = budget / 4;
+  const available = weeklyBudget - spent;
 
   return (
     <Content>
@@ -28,7 +29,7 @@ const DasboradPage = () => {
       <table className={classes.table}>
         <tr>
           <td>Weekly budget</td>
-          <td>{formatEuro(budget / 4)}</td>
+          <td>{formatEuro(weeklyBudget / 4)}</td>
         </tr>
         <tr>
           <td>Your spendings</td>
@@ -37,7 +38,7 @@ const DasboradPage = () => {
       </table>
       <br />
 
-      <ProgressBar current={spent} total={budget} goal={(budget / 7) * dayOfWeek} />
+      <ProgressBar current={spent} total={weeklyBudget} goal={(weeklyBudget / 7) * dayOfWeek} />
 
       <br />
 
