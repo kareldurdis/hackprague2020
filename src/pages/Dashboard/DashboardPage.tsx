@@ -6,6 +6,7 @@ import DreamCard from '../../components/DreamCard';
 import {transactions} from "../../db/transactions";
 import {formatEuro} from "../../utils";
 import {ProgressBar} from "../../components/ProgressBar";
+import HackButton from '../../components/HackButton';
 
 const useStyles = createUseStyles({
     table: {
@@ -67,6 +68,8 @@ const DasboradPage = () => {
             <h3>Recommended</h3>
             <label><Checkbox checked /> Emergency fund</label>
             <label><Checkbox /> Life insurance</label>
+
+            <HackButton onNewTransaction={() => {}} onWeeklyReview={() => {}} onMonthlyReview={() => {}} />
 
         </Content>
     );
