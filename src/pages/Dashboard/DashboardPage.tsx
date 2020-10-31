@@ -3,9 +3,9 @@ import {createUseStyles} from "react-jss";
 import {Checkbox} from 'reakit';
 import Content from '../../components/Content';
 import DreamCard from '../../components/DreamCard';
-import {transactions} from "../../db/transactions";
 import {formatEuro} from "../../utils";
 import {ProgressBar} from "../../components/ProgressBar";
+import transactions from '../../__mocks__/transactions';
 
 const useStyles = createUseStyles({
     table: {
