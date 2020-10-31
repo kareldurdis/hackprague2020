@@ -4,7 +4,7 @@ import { createUseStyles } from "react-jss";
 import { Link } from "react-router-dom";
 
 const useStyles = createUseStyles({
-    backLink: {
+    nextLink: {
         padding: 10,
         border: "1px solid #000",
         borderRadius: 5,
@@ -22,7 +22,7 @@ interface Props {
 const NextLink = ({ className, to }: Props) => {
     const classes = useStyles();
     return (
-        <Link to={to} className={classNames(className, classes.backLink)}>
+        <Link to={to} className={classNames(className, classes.nextLink)}>
             Next &gt;
         </Link>
     );
