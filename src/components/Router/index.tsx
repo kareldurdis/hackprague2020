@@ -4,6 +4,7 @@ import { Routes } from "./routes";
 import Onboarding from "../../pages/Onboarding";
 import Onboarding01 from "../../pages/Onboarding/steps/01";
 import Homepage from "../../pages/Homepage";
+import NewDream from "../../pages/Dream/new";
 import { DreamsContextProvider } from "../../context/dreams";
 
 const Router = () => {
@@ -20,6 +21,11 @@ const Router = () => {
         </Route>
         <Route path={Routes.Onboarding_01}>
           <Onboarding01 />
+        </Route>
+        <Route path={Routes.NewDream}>
+          <DreamsContextProvider>
+            <NewDream />
+          </DreamsContextProvider>
         </Route>
       </Switch>
     </BrowserRouter>
