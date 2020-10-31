@@ -30,8 +30,7 @@ const OnboardingStep01 = () => {
         ))}
 
         <li>
-          {/* TODO: Link to step 2 */}
-          <Link to={Routes.Onboarding_01}>
+          <Link to={Routes.NewDream}>
             <DreamCard className={classes.dreamCard} />
           </Link>
         </li>
