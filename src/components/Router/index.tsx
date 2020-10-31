@@ -7,6 +7,8 @@ import Homepage from "../../pages/Homepage";
 import NewDream from "../../pages/Dream/new";
 import { DreamsContextProvider } from "../../context/dreams";
 import EmergencyIntro from "../../pages/Onboarding/steps/emergencyIntro";
+import EmergencyAdd from "../../pages/Onboarding/steps/emergencyAdd";
+import { EmergencyFundContextProvider } from "../../context/emergencyFund";
 
 const Router = () => {
   return (
@@ -28,8 +30,13 @@ const Router = () => {
             <NewDream />
           </DreamsContextProvider>
         </Route>
-        <Route path={Routes.Emergency_intro}>
+        <Route path={Routes.Emergency_intro} exact>
           <EmergencyIntro />
+        </Route>
+        <Route path={Routes.Emergency_add}>
+          <EmergencyFundContextProvider>
+            <EmergencyAdd />
+          </EmergencyFundContextProvider>
         </Route>
       </Switch>
     </BrowserRouter>
