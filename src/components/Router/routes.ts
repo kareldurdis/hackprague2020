@@ -1,3 +1,3 @@
 export enum Routes {
-  Intro = "/intro",
+  Homepage = "/",
 }
