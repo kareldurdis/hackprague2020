@@ -1,21 +1,21 @@
-import { Dream } from "../context/dreams";
-import CarImage from "../assets/car.jpg";
+import { Dream } from '../context/dreams';
+import CarImage from '../assets/car.jpg';
 
 const dreams: Dream[] = [
   {
-    id: "1",
-    name: "Vacation",
+    id: '1',
+    name: 'Vacation',
     cost: 12000,
   },
   {
-    id: "2",
-    name: "Car",
+    id: '2',
+    name: 'Car',
     cost: 12000,
     image: CarImage,
   },
   {
-    id: "3",
-    name: "Christmass Gifts",
+    id: '3',
+    name: 'Christmass Gifts',
     cost: 1000,
   },
 ];

@@ -1,8 +1,8 @@
-import React, { memo } from "react";
-import { Redirect } from "react-router-dom";
-import Content from "../components/Content";
-import { Routes } from "../components/Router/routes";
-import { useDreamsContext } from "../context/dreams";
+import React, { memo } from 'react';
+import { Redirect } from 'react-router-dom';
+import Content from '../components/Content';
+import { Routes } from '../components/Router/routes';
+import { useDreamsContext } from '../context/dreams';
 
 const Homepage = () => {
   const { dreams } = useDreamsContext();

@@ -1,6 +1,6 @@
-import React, { memo } from "react";
-import PositiveWeeklyReview from "./Positive";
-import NegativeWeeklyReview from "./Negative";
+import React, { memo } from 'react';
+import PositiveWeeklyReview from './Positive';
+import NegativeWeeklyReview from './Negative';
 
 const WeeklyReview = () => {
   // TODO: Load budget data

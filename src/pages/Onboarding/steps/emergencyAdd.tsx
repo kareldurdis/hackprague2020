@@ -1,5 +1,5 @@
-import dayjs from "dayjs";
-import React, { memo } from "react";
+import dayjs from 'dayjs';
+import React, { memo } from 'react';
 import {
   unstable_useFormState as useFormState,
   unstable_Form as Form,
@@ -7,11 +7,11 @@ import {
   unstable_FormInput as FormInput,
   unstable_FormMessage as FormMessage,
   unstable_FormSubmitButton as FormSubmitButton,
-} from "reakit/Form";
-import { v4 as uuid } from "uuid";
-import Content from "../../../components/Content";
-import { useEmergencyFundContext } from "../../../context/emergencyFund";
-import getNumber from "../../../utils/getNumber";
+} from 'reakit/Form';
+import { v4 as uuid } from 'uuid';
+import Content from '../../../components/Content';
+import { useEmergencyFundContext } from '../../../context/emergencyFund';
+import getNumber from '../../../utils/getNumber';
 
 const EmergencyAdd = () => {
   const { setEmergencyFund } = useEmergencyFundContext();
@@ -21,7 +21,7 @@ const EmergencyAdd = () => {
     onValidate: (values) => {
       let errors: Record<string, string> = {};
       if (!values.cost) {
-        errors.cost = "Please specify a cost of your dream";
+        errors.cost = 'Please specify a cost of your dream';
       }
 
       if (Object.keys(errors).length) {
@@ -34,7 +34,7 @@ const EmergencyAdd = () => {
       const payment = Math.min(rawPayment, cost);
 
       const months = payment > 0 ? Math.ceil(cost / payment) : 0;
-      const end = dayjs().add(months, "month");
+      const end = dayjs().add(months, 'month');
 
       const newEmergencyFund = {
         id: uuid(),
@@ -57,10 +57,7 @@ const EmergencyAdd = () => {
     <Content>
       <h1>Emergency fund</h1>
 
-      <p>
-        Create a safety net for unexpected expenses, so they don't disrupt your
-        dreams.
-      </p>
+      <p>Create a safety net for unexpected expenses, so they don't disrupt your dreams.</p>
 
       <Form {...form}>
         <FormLabel {...form} name="cost">
@@ -70,14 +67,7 @@ const EmergencyAdd = () => {
         <FormMessage {...form} name="cost" />
 
         <div>{payment}&nbsp;€ / month</div>
-        <FormInput
-          {...form}
-          name="payment"
-          type="range"
-          min="0"
-          max={cost}
-          value={payment}
-        />
+        <FormInput {...form} name="payment" type="range" min="0" max={cost} value={payment} />
         <FormMessage {...form} name="payment" />
         <div>{duration} months</div>
 

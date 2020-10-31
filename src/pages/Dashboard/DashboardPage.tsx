@@ -1,16 +1,16 @@
-import * as React from "react";
-import { createUseStyles } from "react-jss";
-import { Checkbox } from "reakit";
-import Content from "../../components/Content";
-import DreamCard from "../../components/DreamCard";
-import transactions from "../../__mocks__/transactions";
-import { formatEuro } from "../../utils";
-import { ProgressBar } from "../../components/ProgressBar";
-import HackButton from "../../components/HackButton";
+import * as React from 'react';
+import { createUseStyles } from 'react-jss';
+import { Checkbox } from 'reakit';
+import Content from '../../components/Content';
+import DreamCard from '../../components/DreamCard';
+import transactions from '../../__mocks__/transactions';
+import { formatEuro } from '../../utils';
+import { ProgressBar } from '../../components/ProgressBar';
+import HackButton from '../../components/HackButton';
 
 const useStyles = createUseStyles({
   table: {
-    width: "100%",
+    width: '100%',
   },
 });
 
@@ -37,11 +37,7 @@ const DasboradPage = () => {
       </table>
       <br />
 
-      <ProgressBar
-        current={spent}
-        total={budget}
-        goal={(budget / 7) * dayOfWeek}
-      />
+      <ProgressBar current={spent} total={budget} goal={(budget / 7) * dayOfWeek} />
 
       <br />
 
@@ -56,7 +52,7 @@ const DasboradPage = () => {
       <br />
       <h3>Dreams</h3>
 
-      <DreamCard dream={{ cost: 1000, name: "Lambo", id: "fake" }} />
+      <DreamCard dream={{ cost: 1000, name: 'Lambo', id: 'fake' }} />
 
       <h3>Payment History</h3>
       <ul>

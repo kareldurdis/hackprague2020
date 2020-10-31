@@ -1,19 +1,19 @@
-import classNames from "classnames";
-import React, { memo } from "react";
-import { createUseStyles } from "react-jss";
-import { Dream } from "../context/dreams";
+import classNames from 'classnames';
+import React, { memo } from 'react';
+import { createUseStyles } from 'react-jss';
+import { Dream } from '../context/dreams';
 
 const useStyles = createUseStyles({
   card: {
     padding: 10,
-    border: "1px solid #000",
+    border: '1px solid #000',
     borderRadius: 5,
     width: 300,
     height: 100,
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "flex-end",
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
   },
 });
 

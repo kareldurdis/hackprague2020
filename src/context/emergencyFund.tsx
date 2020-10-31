@@ -6,7 +6,7 @@ import React, {
   SetStateAction,
   useContext,
   useState,
-} from "react";
+} from 'react';
 
 export interface EmergencyFund {
   cost: number;
@@ -27,14 +27,10 @@ const EmergencyFundContext = createContext<EmergencyFundContextValue>({
 interface EmergencyFundContextProviderProps {}
 export const EmergencyFundContextProvider = memo(
   ({ children }: PropsWithChildren<EmergencyFundContextProviderProps>) => {
-    const [emergencyFund, setEmergencyFund] = useState<EmergencyFund | null>(
-      null
-    );
+    const [emergencyFund, setEmergencyFund] = useState<EmergencyFund | null>(null);
 
     return (
-      <EmergencyFundContext.Provider
-        value={{ emergencyFund, setEmergencyFund }}
-      >
+      <EmergencyFundContext.Provider value={{ emergencyFund, setEmergencyFund }}>
         {children}
       </EmergencyFundContext.Provider>
     );

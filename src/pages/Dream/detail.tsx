@@ -1,10 +1,10 @@
-import React, { memo } from "react";
-import { createUseStyles } from "react-jss";
-import { Link, useParams } from "react-router-dom";
-import Content from "../../components/Content";
-import ProgressBar from "../../components/ProgressBar";
-import { Routes } from "../../components/Router/routes";
-import { useDreamsContext } from "../../context/dreams";
+import React, { memo } from 'react';
+import { createUseStyles } from 'react-jss';
+import { Link, useParams } from 'react-router-dom';
+import Content from '../../components/Content';
+import ProgressBar from '../../components/ProgressBar';
+import { Routes } from '../../components/Router/routes';
+import { useDreamsContext } from '../../context/dreams';
 
 const useStyles = createUseStyles({
   image: {
@@ -24,8 +24,7 @@ const DreamDetail = () => {
       <Content>
         <p>We are terribly sorry, but we couldn't find this dream.</p>
         <p>
-          Maybe you'd like to{" "}
-          <Link to={Routes.NewDream}>create a new one?</Link>
+          Maybe you'd like to <Link to={Routes.NewDream}>create a new one?</Link>
         </p>
       </Content>
     );
@@ -36,9 +35,7 @@ const DreamDetail = () => {
 
   return (
     <Content>
-      {dream.image && (
-        <img src={dream.image} alt="" className={classes.image} />
-      )}
+      {dream.image && <img src={dream.image} alt="" className={classes.image} />}
 
       <ProgressBar current={saved} total={dream.cost} />
 
