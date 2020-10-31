@@ -16,6 +16,7 @@ import Introduction from '../../pages/Onboarding/steps/Introduction';
 import WeeklyReview from '../../pages/WeeklyReview';
 import SummaryPage from '../../pages/Onboarding/steps/SummaryPage';
 import DasboradPage from '../../pages/Dashboard/DashboardPage';
+import MonthlyReview from '../../pages/MonthlyReview';
 
 const Router = () => {
   return (
@@ -64,6 +65,9 @@ const Router = () => {
             <EmergencyFundContextProvider>
               <EmergencyAdd />
             </EmergencyFundContextProvider>
+          </Route>
+          <Route path={Routes.MonthlyReview}>
+            <MonthlyReview />
           </Route>
         </Switch>
       </BrowserRouter>

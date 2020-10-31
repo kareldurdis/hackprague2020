@@ -5,6 +5,7 @@ import Content from '../../components/Content';
 import ProgressBar from '../../components/ProgressBar';
 import { Routes } from '../../components/Router/routes';
 import { useDreamsContext } from '../../context/dreams';
+import DreamError from './error';
 
 const useStyles = createUseStyles({
   image: {
@@ -20,14 +21,7 @@ const DreamDetail = () => {
 
   const dream = dreams.find((_dream) => _dream.id === id);
   if (!dream) {
-    return (
-      <Content>
-        <p>We are terribly sorry, but we couldn't find this dream.</p>
-        <p>
-          Maybe you'd like to <Link to={Routes.NewDream}>create a new one?</Link>
-        </p>
-      </Content>
-    );
+    return <DreamError />;
   }
 
   // TODO: Get saved money

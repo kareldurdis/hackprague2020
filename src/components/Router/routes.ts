@@ -7,9 +7,10 @@ export enum Routes {
   Annual_Payments = '/onboarding/annual-payments',
   Summary = '/onboarding/summary',
   NewDream = '/dream/new',
-  DreamDetail = '/dream/detail/:id',
+  DreamDetail = '/dream/detail',
   Emergency_intro = '/onboarding/emergency-fund',
   WeeklyReview = '/weekly-review',
   Emergency_add = '/onboarding/emergency-fund/add',
   Dashboard = '/dashboard',
+  MonthlyReview = '/monthly-review',
 }
