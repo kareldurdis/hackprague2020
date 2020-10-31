@@ -2,9 +2,7 @@ import * as React from 'react';
 import { createUseStyles } from 'react-jss';
 import { useState } from 'react';
 import { useRef } from 'react';
-import { useHistory } from 'react-router-dom';
 import { Routes } from './Router/routes';
-import { useDreamsContext } from '../context/dreams';
 
 const useStyles = createUseStyles({
   button: {
