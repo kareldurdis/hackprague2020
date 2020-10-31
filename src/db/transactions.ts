@@ -1,4 +1,5 @@
 import faker from "faker";
+import {formatEuro} from "../utils";
 
 export interface Transaction {
     id: string;
@@ -21,6 +22,6 @@ export const transactions: Transaction[] = getFakeArray(() => {
         id: faker.random.uuid(),
         amount,
         payee,
-        description: `${new Intl.NumberFormat('en', {style: 'currency', currency: 'EUR'}).format(amount)} ${payee}`,
+        description: `${formatEuro(amount)} ${payee}`,
     }
 }, 40);
