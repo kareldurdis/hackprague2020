@@ -1,4 +1,3 @@
-import {Transaction, transactions} from "../db/transactions";
 import {Checkbox, useCheckboxState} from "reakit/Checkbox";
 import React, {useEffect, useState} from "react";
 import Content from "./Content";
@@ -6,6 +5,8 @@ import {Input} from "reakit/Input";
 import {createUseStyles} from "react-jss";
 import BackLink from "./BackLink";
 import {Routes} from "./Router/routes";
+import {formatEuro, getSpendings} from "../utils";
+import {Transaction} from "../__mocks__/transactions";
 
 const useStyles = createUseStyles({
     ul: {
@@ -16,7 +17,7 @@ const useStyles = createUseStyles({
     popup: {
         position: 'absolute',
         left: 0,
-        top:0,
+        top: 0,
         width: '100%',
         height: '100%',
         background: 'white',
@@ -38,23 +39,30 @@ export const PickTransactions = ({title, onPick}: Props) => {
         setSearch('');
     }, [showPopup]);
 
+    // Get only negative transactions
+    const spendings = getSpendings();
+
     const picked = (checkbox.state as string[])
-        .map((id) => transactions.find((item) => item.id === id) as Transaction);
+        .map((id) => spendings.find((item) => item.id === id) as Transaction);
+
+    const formatLabel = ({ amount, payee, description }: Transaction) => {
+        return `${formatEuro(amount)} ${payee}: ${description}`;
+    }
 
     return (
         <Content>
             <nav>
-                <BackLink to={Routes.Introduction} />
+                <BackLink to={Routes.Introduction}/>
             </nav>
             <h1>{title} payments</h1>
 
             <div>
                 Choices:
                 <ul>
-                    {picked.map(({description, id}) => {
-                        return (<li key={id}>{description}
+                    {picked.map((transaction) => {
+                        return (<li key={transaction.id}>{formatLabel(transaction)}
                             <button onClick={() => {
-                                checkbox.setState((value) => (value as string[]).filter((item) => item !== id))
+                                checkbox.setState((value) => (value as string[]).filter((item) => item !== transaction.id))
                             }}>Remove
                             </button>
                         </li>);
@@ -65,9 +73,9 @@ export const PickTransactions = ({title, onPick}: Props) => {
 
             <h2>Suggestions</h2>
             <ul className={classes.ul}>
-                {transactions.slice(0, 5).map((transaction) => {
+                {spendings.slice(0, 5).map((transaction) => {
                     return (<li key={transaction.id}><label><Checkbox {...checkbox}
-                                                                      value={transaction.id}/>{transaction.description}
+                                                                      value={transaction.id}/>{formatLabel(transaction)}
                     </label></li>);
                 })}
             </ul>
@@ -80,11 +88,11 @@ export const PickTransactions = ({title, onPick}: Props) => {
                     <Input placeholder="Hledat" value={search} onChange={(e) => setSearch(e.target.value)}/>
 
                     <ul className={classes.ul}>
-                        {(search ? transactions.filter((transaction) => {
+                        {(search ? spendings.filter((transaction) => {
                             return transaction.payee.toLowerCase().includes(search.toLowerCase())
-                        }) : transactions).map((transaction) => {
+                        }) : spendings).map((transaction) => {
                             return (<li key={transaction.id}><label><Checkbox {...checkbox}
-                                                                              value={transaction.id}/>{transaction.description}
+                                                                              value={transaction.id}/>{formatLabel(transaction)}
                             </label></li>);
                         })}
                     </ul>

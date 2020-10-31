@@ -14,6 +14,7 @@ import EmergencyAdd from "../../pages/Onboarding/steps/emergencyAdd";
 import { EmergencyFundContextProvider } from "../../context/emergencyFund";
 import Introduction from "../../pages/Onboarding/steps/Introduction";
 import SummaryPage from "../../pages/Onboarding/steps/SummaryPage";
+import DasboradPage from "../../pages/Dashboard/DashboardPage";
 
 const Router = () => {
   return (
@@ -54,6 +55,9 @@ const Router = () => {
         </Route>
         <Route path={Routes.Summary}>
           <SummaryPage />
+        </Route>
+        <Route path={Routes.Dashboard}>
+          <DasboradPage />
         </Route>
         <Route path={Routes.Emergency_add}>
           <EmergencyFundContextProvider>
