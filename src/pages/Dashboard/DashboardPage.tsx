@@ -27,14 +27,16 @@ const DasboradPage = () => {
       <h1>Dashboard</h1>
       <h2>Weekly spending</h2>
       <table className={classes.table}>
-        <tr>
-          <td>Weekly budget</td>
-          <td>{formatEuro(weeklyBudget / 4)}</td>
-        </tr>
-        <tr>
-          <td>Your spendings</td>
-          <td>{formatEuro(spent)}</td>
-        </tr>
+        <tbody>
+          <tr>
+            <td>Weekly budget</td>
+            <td>{formatEuro(weeklyBudget / 4)}</td>
+          </tr>
+          <tr>
+            <td>Your spendings</td>
+            <td>{formatEuro(spent)}</td>
+          </tr>
+        </tbody>
       </table>
       <br />
 
