@@ -59,7 +59,7 @@ const SummaryPage = () => {
             <SpendCard name={'Annual payments'} amount={payments.annual} monthly={payments.annual/12}/>
 
             Spending budget {formatEuro(budget)}
-            <Link to={Routes.Summary}>Continue (TODO)</Link>
+            <Link to={Routes.Dashboard}>Continue</Link>
         </Content>
     );
 }
