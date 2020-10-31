@@ -1,10 +1,9 @@
 import * as React from 'react';
 import Content from "../../../components/Content";
-import EmergencyFundLogo from "../../../assets/emergency-fund.jpg";
 import {Link} from "react-router-dom";
 import {Routes} from "../../../components/Router/routes";
 import {createUseStyles} from "react-jss";
-import {formatEuro} from '../../../utils';
+import {formatEuro, sumIncomes} from '../../../utils';
 
 const useStyles = createUseStyles({
     card: {
@@ -38,7 +37,7 @@ const SpendCard = ({name, amount, monthly}: Props) => {
 }
 
 const SummaryPage = () => {
-    const income = 300;
+    const income = sumIncomes();
     const payments = {
         monthly: 50,
         dreams: 200,
