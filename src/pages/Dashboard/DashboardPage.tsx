@@ -5,6 +5,7 @@ import Content from '../../components/Content';
 import DreamCard from '../../components/DreamCard';
 import {formatEuro} from "../../utils";
 import {ProgressBar} from "../../components/ProgressBar";
+import HackButton from '../../components/HackButton';
 import transactions from '../../__mocks__/transactions';
 
 const useStyles = createUseStyles({
@@ -67,6 +68,8 @@ const DasboradPage = () => {
             <h3>Recommended</h3>
             <label><Checkbox checked /> Emergency fund</label>
             <label><Checkbox /> Life insurance</label>
+
+            <HackButton onNewTransaction={() => {}} onWeeklyReview={() => {}} onMonthlyReview={() => {}} />
 
         </Content>
     );
