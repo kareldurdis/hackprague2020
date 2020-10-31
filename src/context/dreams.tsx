@@ -6,9 +6,10 @@ import React, {
 } from "react";
 
 export interface Dream {
+  id: string;
   name: string;
   cost: number;
-  end: Date;
+  end?: Date;
 }
 
 export interface DreamsContextValue {
