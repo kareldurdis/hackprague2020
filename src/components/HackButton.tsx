@@ -48,7 +48,6 @@ interface Props {
 const HackButton = ({ onMonthlyReview, onNewTransaction, onWeeklyReview }: Props) => {
   const classes = useStyles();
   const [showOptions, setOptionsVisibiliy] = useState(false);
-  const history = useHistory();
   const ref = useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
