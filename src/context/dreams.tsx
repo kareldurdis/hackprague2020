@@ -13,7 +13,6 @@ export interface Dream {
 
 export interface DreamsContextValue {
   dreams: Dream[];
-  newDream?: Dream | null;
   addNewDream: (dream: Dream) => void;
   onboarded: boolean;
   setIsOnboarded: (onboarded: boolean) => void;
@@ -21,7 +20,6 @@ export interface DreamsContextValue {
 
 const DreamsContext = createContext<DreamsContextValue>({
   dreams: [],
-  newDream: null,
   addNewDream: () => {},
   onboarded: false,
   setIsOnboarded: () => {},
@@ -31,7 +29,6 @@ interface DreamsContextProviderProps {}
 
 export const DreamsContextProvider = memo(
   ({ children }: PropsWithChildren<DreamsContextProviderProps>) => {
-    const [newDream] = useState<Dream | null>(null);
     const [dreams, setDreams] = useStorage('dreams', dreamsMock);
     const [onboarded, setIsOnboarded] = useStorage('onboarded', false);
 
@@ -40,7 +37,7 @@ export const DreamsContextProvider = memo(
     };
 
     return (
-      <DreamsContext.Provider value={{ dreams, newDream, addNewDream, onboarded, setIsOnboarded }}>
+      <DreamsContext.Provider value={{ dreams, addNewDream, onboarded, setIsOnboarded }}>
         {children}
       </DreamsContext.Provider>
     );
