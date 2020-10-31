@@ -4,6 +4,7 @@ export enum Routes {
   Onboarding_01 = "/onboarding/01",
   Montly_Payments = "/onboarding/monthly-payments",
   Annual_Payments = "/onboarding/annual-payments",
+  Summary = '/onboarding/summary',
   NewDream = "/dream/new",
   Emergency_intro = "/onboarding/emergency-fund",
 }
