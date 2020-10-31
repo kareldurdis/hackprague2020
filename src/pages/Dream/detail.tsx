@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import { createUseStyles } from "react-jss";
 import { Link, useParams } from "react-router-dom";
 import Content from "../../components/Content";
+import ProgressBar from "../../components/ProgressBar";
 import { Routes } from "../../components/Router/routes";
 import { useDreamsContext } from "../../context/dreams";
 
@@ -30,11 +31,17 @@ const DreamDetail = () => {
     );
   }
 
+  // TODO: Get saved money
+  const saved = dream.cost / 2;
+
   return (
     <Content>
       {dream.image && (
         <img src={dream.image} alt="" className={classes.image} />
       )}
+
+      <ProgressBar current={saved} total={dream.cost} />
+
       <h1>{dream.name}</h1>
       <div>{dream.cost}&nbsp;€</div>
       {/* TODO: Progress */}
