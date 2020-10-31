@@ -38,13 +38,13 @@ const NegativeWeeklyReview = ({ spent, budget, week, goal, difference }: WeeklyR
 
   return (
     <Content>
-      <img className={classes.largeImage} src={ThumbsUpImg} alt="Good job!" />
-
       <h1>Weekly review</h1>
 
+      <img className={classes.largeImage} src={ThumbsUpImg} alt="Bad job!" />
+      <p>That didn't turn out as expected.</p>
       <p>
-        This week wasn't so great, but no worries, next one will definitely be better! Remaining
-        weekly budgets were increased.
+        Well, that happens sometimes. We'll reduce your budget for next week so you can pick up the
+        pace to reach your dreams!
       </p>
 
       <ProgressBar current={spent} total={budget} goal={goal} />
@@ -52,8 +52,8 @@ const NegativeWeeklyReview = ({ spent, budget, week, goal, difference }: WeeklyR
       <div className={classes.table}>
         <div className={classes.tableRow}>
           <div>
-            <img className={classes.smallImage} src={ThumbsUpImg} alt="Good job!" />
-            You lost
+            <img className={classes.smallImage} src={ThumbsUpImg} alt="Bad job!" />
+            You overspent
           </div>
           <div>{difference} €</div>
         </div>

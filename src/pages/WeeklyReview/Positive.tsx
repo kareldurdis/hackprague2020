@@ -35,9 +35,9 @@ const PositiveWeeklyReview = ({ spent, budget, week, goal, difference }: WeeklyR
 
   return (
     <Content>
-      <img className={classes.largeImage} src={ThumbsUpImg} alt="Good job!" />
-
       <h1>Weekly review</h1>
+
+      <img className={classes.largeImage} src={ThumbsUpImg} alt="Good job!" />
 
       <p>
         You did good job this week! You've met your goal. Unspent money have been added to weekly

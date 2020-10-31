@@ -44,7 +44,10 @@ const DasboradPage = () => {
       {available >= 0 ? (
         <>You're doing good! You can spend {formatEuro(available)} this week.</>
       ) : (
-        <>Vedeš si blbě</>
+        <>
+          You've already spent your weekly budget. You should cut your expenses until end of the
+          week.
+        </>
       )}
 
       <button>Show Summary</button>
