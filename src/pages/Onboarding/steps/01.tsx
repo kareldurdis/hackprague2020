@@ -23,7 +23,6 @@ const OnboardingStep01 = () => {
       <ul>
         {dreams.map((dream) => (
           <li key={dream.id}>
-            {/* TODO: Link to step 2 */}
             <Link to={Routes.Onboarding_01}>
               <DreamCard className={classes.dreamCard} dream={dream} />
             </Link>
@@ -36,7 +35,9 @@ const OnboardingStep01 = () => {
           </Link>
         </li>
       </ul>
+      <nav>
         <NextLink to={Routes.Introduction} />
+      </nav>
     </Content>
   );
 };

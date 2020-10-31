@@ -16,9 +16,13 @@ const Introduction = () => {
 
     return (
         <Content>
-            <BackLink to={Routes.Onboarding_01} />
+            <nav>
+                <BackLink to={Routes.Onboarding_01} />
+            </nav>
             <p className={classes.p}>In order to reach your goals, we need to get to know your finances a little better</p>
-            <NextLink to={Routes.Montly_Payments} />
+            <nav>
+                <NextLink to={Routes.Montly_Payments} />
+            </nav>
         </Content>
     );
 };
