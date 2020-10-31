@@ -9,6 +9,7 @@ export enum Routes {
   NewDream = "/dream/new",
   DreamDetail = "/dream/detail/:id",
   Emergency_intro = "/onboarding/emergency-fund",
+  WeeklyReview = "/weekly-review",
   Emergency_add = "/onboarding/emergency-fund/add",
-  Dashboard = '/dashboard',
+  Dashboard = "/dashboard",
 }
