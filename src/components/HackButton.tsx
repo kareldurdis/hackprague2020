@@ -2,6 +2,9 @@ import * as React from 'react';
 import { createUseStyles } from 'react-jss';
 import { useState } from 'react';
 import { useRef } from 'react';
+import { useHistory } from 'react-router-dom';
+import { Routes } from './Router/routes';
+import { useDreamsContext } from '../context/dreams';
 
 const useStyles = createUseStyles({
   button: {
@@ -45,6 +48,7 @@ interface Props {
 const HackButton = ({ onMonthlyReview, onNewTransaction, onWeeklyReview }: Props) => {
   const classes = useStyles();
   const [showOptions, setOptionsVisibiliy] = useState(false);
+  const history = useHistory();
   const ref = useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
@@ -79,6 +83,16 @@ const HackButton = ({ onMonthlyReview, onNewTransaction, onWeeklyReview }: Props
           </li>
           <li>
             <button onClick={onWeeklyReview}>Monthly review</button>
+          </li>
+          <li>
+            <button
+              onClick={() => {
+                localStorage.clear();
+                window.location.replace(Routes.Homepage);
+              }}
+            >
+              Clear
+            </button>
           </li>
         </ul>
       ) : null}

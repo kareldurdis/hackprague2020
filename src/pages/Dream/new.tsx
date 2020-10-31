@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo } from 'react';
 import {
   unstable_useFormState as useFormState,
   unstable_Form as Form,
@@ -6,29 +6,29 @@ import {
   unstable_FormInput as FormInput,
   unstable_FormMessage as FormMessage,
   unstable_FormSubmitButton as FormSubmitButton,
-} from "reakit/Form";
-import Content from "../../components/Content";
-import { useDreamsContext } from "../../context/dreams";
-import { v4 as uuid } from "uuid";
-import dayjs from "dayjs";
-import getNumber from "../../utils/getNumber";
-import { useHistory } from "react-router-dom";
-import Router from "../../components/Router";
-import { Routes } from "../../components/Router/routes";
+} from 'reakit/Form';
+import Content from '../../components/Content';
+import { useDreamsContext } from '../../context/dreams';
+import { v4 as uuid } from 'uuid';
+import dayjs from 'dayjs';
+import getNumber from '../../utils/getNumber';
+import { useHistory } from 'react-router-dom';
+import Router from '../../components/Router';
+import { Routes } from '../../components/Router/routes';
 
 const NewDream = () => {
   const { addNewDream } = useDreamsContext();
   const history = useHistory();
 
   const form = useFormState({
-    values: { name: "", cost: 0, image: null, payment: 0 },
+    values: { name: '', cost: 0, image: null, payment: 0 },
     onValidate: (values) => {
       let errors: Record<string, string> = {};
       if (!values.name) {
-        errors.name = "Please specify a name of your dream";
+        errors.name = 'Please specify a name of your dream';
       }
       if (!values.cost) {
-        errors.cost = "Please specify a cost of your dream";
+        errors.cost = 'Please specify a cost of your dream';
       }
 
       if (Object.keys(errors).length) {
@@ -41,7 +41,7 @@ const NewDream = () => {
       const payment = Math.min(rawPayment, cost);
 
       const months = payment > 0 ? Math.ceil(cost / payment) : 0;
-      const end = dayjs().add(months, "month");
+      const end = dayjs().add(months, 'month');
 
       const newDream = {
         id: uuid(),
@@ -78,24 +78,12 @@ const NewDream = () => {
         <FormMessage {...form} name="cost" />
 
         <FormLabel {...form} name="image">
-          <FormInput
-            {...form}
-            name="image"
-            type="file"
-            accept=".jpg, .jpeg, .png"
-          />
+          <FormInput {...form} name="image" type="file" accept=".jpg, .jpeg, .png" />
         </FormLabel>
         <FormMessage {...form} name="image" />
 
         <div>{payment}&nbsp;€ / month</div>
-        <FormInput
-          {...form}
-          name="payment"
-          type="range"
-          min="0"
-          max={cost}
-          value={payment}
-        />
+        <FormInput {...form} name="payment" type="range" min="0" max={cost} value={payment} />
         <FormMessage {...form} name="payment" />
         <div>{duration} months</div>
 

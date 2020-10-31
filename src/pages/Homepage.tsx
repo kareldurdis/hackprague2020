@@ -1,13 +1,12 @@
 import React, { memo } from 'react';
 import { Redirect } from 'react-router-dom';
-import Content from '../components/Content';
 import { Routes } from '../components/Router/routes';
 import { useDreamsContext } from '../context/dreams';
 
 const Homepage = () => {
-  const { dreams } = useDreamsContext();
+  const { onboarded } = useDreamsContext();
 
-  if (!dreams.length) {
+  if (!onboarded) {
     return (
       <Redirect
         to={{
@@ -15,13 +14,15 @@ const Homepage = () => {
         }}
       />
     );
+  } else {
+    return (
+      <Redirect
+        to={{
+          pathname: Routes.Dashboard,
+        }}
+      />
+    );
   }
-
-  return (
-    <Content>
-      <h1>Dashboard</h1>
-    </Content>
-  );
 };
 
 export default memo(Homepage);
