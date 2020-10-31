@@ -5,6 +5,7 @@ import Content from "../../../components/Content";
 import DreamCard from "../../../components/DreamCard";
 import { Routes } from "../../../components/Router/routes";
 import dreams from "../../../__mocks__/dreams";
+import NextLink from "../../../components/NextLink";
 
 const useStyles = createUseStyles({
   dreamCard: {
@@ -35,6 +36,7 @@ const OnboardingStep01 = () => {
           </Link>
         </li>
       </ul>
+        <NextLink to={Routes.Introduction} />
     </Content>
   );
 };
