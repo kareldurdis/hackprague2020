@@ -1,21 +1,21 @@
-import React, { memo } from "react";
-import { Route, BrowserRouter, Switch } from "react-router-dom";
-import { Routes } from "./routes";
-import Onboarding from "../../pages/Onboarding";
-import Onboarding01 from "../../pages/Onboarding/steps/01";
-import MontlyPayments from "../../pages/Onboarding/steps/MontlyPayments";
-import AnnualPayments from "../../pages/Onboarding/steps/AnnualPayments";
-import Homepage from "../../pages/Homepage";
-import NewDream from "../../pages/Dream/new";
-import DreamDetail from "../../pages/Dream/detail";
-import { DreamsContextProvider } from "../../context/dreams";
-import EmergencyIntro from "../../pages/Onboarding/steps/EmergencyIntro";
-import EmergencyAdd from "../../pages/Onboarding/steps/emergencyAdd";
-import { EmergencyFundContextProvider } from "../../context/emergencyFund";
-import Introduction from "../../pages/Onboarding/steps/Introduction";
-import WeeklyReview from "../../pages/WeeklyReview";
-import SummaryPage from "../../pages/Onboarding/steps/SummaryPage";
-import DasboradPage from "../../pages/Dashboard/DashboardPage";
+import React, { memo } from 'react';
+import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import { Routes } from './routes';
+import Onboarding from '../../pages/Onboarding';
+import Onboarding01 from '../../pages/Onboarding/steps/01';
+import MontlyPayments from '../../pages/Onboarding/steps/MontlyPayments';
+import AnnualPayments from '../../pages/Onboarding/steps/AnnualPayments';
+import Homepage from '../../pages/Homepage';
+import NewDream from '../../pages/Dream/new';
+import DreamDetail from '../../pages/Dream/detail';
+import { DreamsContextProvider } from '../../context/dreams';
+import EmergencyIntro from '../../pages/Onboarding/steps/EmergencyIntro';
+import EmergencyAdd from '../../pages/Onboarding/steps/emergencyAdd';
+import { EmergencyFundContextProvider } from '../../context/emergencyFund';
+import Introduction from '../../pages/Onboarding/steps/Introduction';
+import WeeklyReview from '../../pages/WeeklyReview';
+import SummaryPage from '../../pages/Onboarding/steps/SummaryPage';
+import DasboradPage from '../../pages/Dashboard/DashboardPage';
 
 const Router = () => {
   return (
