@@ -3,6 +3,8 @@ import { Route, BrowserRouter, Switch } from "react-router-dom";
 import { Routes } from "./routes";
 import Onboarding from "../../pages/Onboarding";
 import Onboarding01 from "../../pages/Onboarding/steps/01";
+import MontlyPayments from "../../pages/Onboarding/steps/MontlyPayments";
+import AnnualPayments from "../../pages/Onboarding/steps/AnnualPayments";
 import Homepage from "../../pages/Homepage";
 import NewDream from "../../pages/Dream/new";
 import { DreamsContextProvider } from "../../context/dreams";
@@ -27,6 +29,12 @@ const Router = () => {
           <DreamsContextProvider>
             <NewDream />
           </DreamsContextProvider>
+        </Route>
+        <Route path={Routes.Montly_Payments}>
+          <MontlyPayments />
+        </Route>
+        <Route path={Routes.Annual_Payments}>
+          <AnnualPayments />
         </Route>
         <Route path={Routes.Emergency_intro}>
           <EmergencyIntro />
