@@ -23,7 +23,9 @@ const Router = () => {
           <Onboarding01 />
         </Route>
         <Route path={Routes.NewDream}>
-          <NewDream />
+          <DreamsContextProvider>
+            <NewDream />
+          </DreamsContextProvider>
         </Route>
       </Switch>
     </BrowserRouter>

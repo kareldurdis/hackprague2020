@@ -8,8 +8,16 @@ import {
   unstable_FormSubmitButton as FormSubmitButton,
 } from "reakit/Form";
 import Content from "../../components/Content";
+import { useDreamsContext } from "../../context/dreams";
+import { v4 as uuid } from "uuid";
+import dayjs from "dayjs";
+
+const getNumber = (rawNumber: string | number): number =>
+  parseInt(`${rawNumber}`, 10) || 0;
 
 const NewDream = () => {
+  const { setNewDream } = useDreamsContext();
+
   const form = useFormState({
     values: { name: "", cost: 0, image: null, payment: 0 },
     onValidate: (values) => {
@@ -26,12 +34,21 @@ const NewDream = () => {
       }
     },
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      const months = payment > 0 ? Math.ceil(cost / payment) : 0;
+      const end = dayjs().add(months, "month");
+      const newDream = {
+        id: uuid(),
+        name: values.name,
+        cost: getNumber(values.cost),
+        payment: getNumber(values.payment),
+        end: end.toDate(),
+      };
+      setNewDream(newDream);
     },
   });
 
-  const payment = parseInt(`${form.values.payment}`, 10) || 0;
-  const cost = parseInt(`${form.values.cost}`, 10) || 0;
+  const payment = getNumber(form.values.payment);
+  const cost = getNumber(form.values.cost);
   const duration = payment > 0 ? Math.ceil(cost / payment) : 0;
 
   return (
