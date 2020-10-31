@@ -5,6 +5,7 @@ import Onboarding from "../../pages/Onboarding";
 import Onboarding01 from "../../pages/Onboarding/steps/01";
 import Homepage from "../../pages/Homepage";
 import { DreamsContextProvider } from "../../context/dreams";
+import EmergencyIntro from "../../pages/Onboarding/steps/emergencyIntro";
 
 const Router = () => {
   return (
@@ -20,6 +21,9 @@ const Router = () => {
         </Route>
         <Route path={Routes.Onboarding_01}>
           <Onboarding01 />
+        </Route>
+        <Route path={Routes.Emergency_intro}>
+          <EmergencyIntro />
         </Route>
       </Switch>
     </BrowserRouter>
