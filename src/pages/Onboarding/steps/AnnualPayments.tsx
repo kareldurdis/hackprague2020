@@ -10,7 +10,7 @@ const AnnualPayments = () => {
       title={'Annual'}
       onPick={(transactions) => {
         console.log(transactions);
-        history.push(Routes.Summary);
+        history.push(Routes.Emergency_intro);
       }}
     />
   );
