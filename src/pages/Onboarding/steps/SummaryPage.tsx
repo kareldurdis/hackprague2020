@@ -38,20 +38,27 @@ const SpendCard = ({name, amount, monthly}: Props) => {
 }
 
 const SummaryPage = () => {
+    const income = 300;
+    const payments = {
+        monthly: 50,
+        dreams: 200,
+        annual: 120,
+    };
+    const budget = income - payments.monthly - payments.dreams - payments.annual / 12;
     return (
         <Content>
             <h1>Summary</h1>
             <h2>Monthly budget</h2>
 
-            <SpendCard name={'Analyzed income'} amount={200}/>
+            <SpendCard name={'Analyzed income'} amount={income}/>
 
-            <SpendCard name={'Monthly payments'} amount={200}/>
+            <SpendCard name={'Monthly payments'} amount={payments.monthly}/>
 
-            <SpendCard name={'Dreams payments'} amount={200}/>
+            <SpendCard name={'Dreams payments'} amount={payments.dreams}/>
 
-            <SpendCard name={'Annual payments'} amount={200} monthly={20}/>
+            <SpendCard name={'Annual payments'} amount={payments.annual} monthly={payments.annual/12}/>
 
-            Spending budget {formatEuro(20)}
+            Spending budget {formatEuro(budget)}
             <Link to={Routes.Summary}>Continue (TODO)</Link>
         </Content>
     );
