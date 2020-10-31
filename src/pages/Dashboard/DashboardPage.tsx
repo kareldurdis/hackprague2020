@@ -4,7 +4,7 @@ import { Checkbox } from 'reakit';
 import Content from '../../components/Content';
 import DreamCard from '../../components/DreamCard';
 import transactions from '../../__mocks__/transactions';
-import { formatEuro } from '../../utils';
+import { formatEuro, useStorage } from '../../utils';
 import { ProgressBar } from '../../components/ProgressBar';
 import HackButton from '../../components/HackButton';
 
@@ -16,10 +16,11 @@ const useStyles = createUseStyles({
 
 const DasboradPage = () => {
   const classes = useStyles();
-  const budget = 322;
   const spent = 170;
   const dayOfWeek = 4;
-  const available = budget - spent;
+  const [budget] = useStorage('budget', 0);
+  const weeklyBudget = budget / 4;
+  const available = weeklyBudget - spent;
 
   return (
     <Content>
@@ -28,7 +29,7 @@ const DasboradPage = () => {
       <table className={classes.table}>
         <tr>
           <td>Weekly budget</td>
-          <td>{formatEuro(budget)}</td>
+          <td>{formatEuro(weeklyBudget / 4)}</td>
         </tr>
         <tr>
           <td>Your spendings</td>
@@ -37,7 +38,7 @@ const DasboradPage = () => {
       </table>
       <br />
 
-      <ProgressBar current={spent} total={budget} goal={(budget / 7) * dayOfWeek} />
+      <ProgressBar current={spent} total={weeklyBudget} goal={(weeklyBudget / 7) * dayOfWeek} />
 
       <br />
 

@@ -3,8 +3,10 @@ import Content from '../../../components/Content';
 import { Link } from 'react-router-dom';
 import { Routes } from '../../../components/Router/routes';
 import { createUseStyles } from 'react-jss';
-import { formatEuro, sumIncomes } from '../../../utils';
+import { formatEuro, sumIncomes, useStorage } from '../../../utils';
 import { useDreamsContext } from '../../../context/dreams';
+import { Transaction } from '../../../__mocks__/transactions';
+import { useEffect } from 'react';
 
 const useStyles = createUseStyles({
   card: {
@@ -42,12 +44,24 @@ const SpendCard = ({ name, amount, monthly }: Props) => {
 const SummaryPage = () => {
   const income = sumIncomes();
   const { setIsOnboarded } = useDreamsContext();
+  const [annual] = useStorage<Transaction[]>('annual-expenses', []);
+  const [monthly] = useStorage<Transaction[]>('monthly-expenses', []);
+  const [, setBudget] = useStorage('budget', 0);
   const payments = {
-    monthly: 50,
+    monthly: monthly.reduce((accumulator, current) => {
+      return accumulator + Math.abs(current.amount);
+    }, 0),
     dreams: 200,
-    annual: 120,
+    annual: annual.reduce((accumulator, current) => {
+      return accumulator + Math.abs(current.amount);
+    }, 0),
   };
   const budget = income - payments.monthly - payments.dreams - payments.annual / 12;
+
+  useEffect(() => {
+    setBudget(budget);
+  }, [budget, setBudget]);
+
   return (
     <Content>
       <h1>Summary</h1>
