@@ -7,6 +7,7 @@ import React, {
   useContext,
   useState,
 } from "react";
+import {useDreams} from "../utils";
 
 export interface Dream {
   id: string;
@@ -19,22 +20,27 @@ export interface Dream {
 export interface DreamsContextValue {
   dreams: Dream[];
   newDream?: Dream | null;
-  setNewDream: Dispatch<SetStateAction<Dream | null>>;
+    addNewDream: (dream: Dream) => void;
 }
 
 const DreamsContext = createContext<DreamsContextValue>({
   dreams: [],
   newDream: null,
-  setNewDream: () => {},
+    addNewDream: () => {},
 });
 
 interface DreamsContextProviderProps {}
 export const DreamsContextProvider = memo(
   ({ children }: PropsWithChildren<DreamsContextProviderProps>) => {
-    const [newDream, setNewDream] = useState<Dream | null>(null);
+    const [newDream] = useState<Dream | null>(null);
+    const [ dreams, setDreams ] = useDreams();
+
+    const addNewDream = (dream: Dream) => {
+        return setDreams((state) => [...(state || []), dream]);
+    }
 
     return (
-      <DreamsContext.Provider value={{ dreams: [], newDream, setNewDream }}>
+      <DreamsContext.Provider value={{ dreams, newDream, addNewDream }}>
         {children}
       </DreamsContext.Provider>
     );

@@ -18,12 +18,11 @@ import DasboradPage from "../../pages/Dashboard/DashboardPage";
 
 const Router = () => {
   return (
+      <DreamsContextProvider>
     <BrowserRouter>
       <Switch>
         <Route path={Routes.Homepage} exact>
-          <DreamsContextProvider>
             <Homepage />
-          </DreamsContextProvider>
         </Route>
         <Route path={Routes.Onboarding} exact>
           <Onboarding />
@@ -35,9 +34,7 @@ const Router = () => {
           <Introduction />
         </Route>
         <Route path={Routes.NewDream}>
-          <DreamsContextProvider>
             <NewDream />
-          </DreamsContextProvider>
         </Route>
         <Route path={Routes.Montly_Payments}>
           <MontlyPayments />
@@ -64,6 +61,7 @@ const Router = () => {
         </Route>
       </Switch>
     </BrowserRouter>
+      </DreamsContextProvider>
   );
 };
 

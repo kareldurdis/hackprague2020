@@ -1,11 +1,11 @@
-import React, { memo } from "react";
-import { createUseStyles } from "react-jss";
-import { Link } from "react-router-dom";
+import React, {memo} from "react";
+import {createUseStyles} from "react-jss";
+import {Link} from "react-router-dom";
 import Content from "../../../components/Content";
 import DreamCard from "../../../components/DreamCard";
-import { Routes } from "../../../components/Router/routes";
-import dreams from "../../../__mocks__/dreams";
+import {Routes} from "../../../components/Router/routes";
 import NextLink from "../../../components/NextLink";
+import {useDreamsContext} from "../../../context/dreams";
 
 const useStyles = createUseStyles({
   dreamCard: {
@@ -15,6 +15,9 @@ const useStyles = createUseStyles({
 
 const OnboardingStep01 = () => {
   const classes = useStyles();
+  const {dreams} = useDreamsContext();
+
+  console.log(dreams);
 
   return (
     <Content>
