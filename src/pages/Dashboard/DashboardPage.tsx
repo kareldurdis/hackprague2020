@@ -53,6 +53,7 @@ const DasboradPage = () => {
             <button>Show Summary</button>
 
             <br />
+            <h3>Dreams</h3>
 
             <DreamCard dream={{ cost: 1000, name: 'Lambo', id: 'fake' }} />
 
