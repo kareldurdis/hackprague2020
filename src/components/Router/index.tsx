@@ -3,6 +3,8 @@ import { Route, BrowserRouter, Switch } from "react-router-dom";
 import { Routes } from "./routes";
 import Onboarding from "../../pages/Onboarding";
 import Onboarding01 from "../../pages/Onboarding/steps/01";
+import Onboarding02 from "../../pages/Onboarding/steps/02";
+import Onboarding03 from "../../pages/Onboarding/steps/03";
 import Homepage from "../../pages/Homepage";
 import { DreamsContextProvider } from "../../context/dreams";
 
@@ -20,6 +22,12 @@ const Router = () => {
         </Route>
         <Route path={Routes.Onboarding_01}>
           <Onboarding01 />
+        </Route>
+        <Route path={Routes.Onboarding_02}>
+          <Onboarding02 />
+        </Route>
+        <Route path={Routes.Onboarding_03}>
+          <Onboarding03 />
         </Route>
       </Switch>
     </BrowserRouter>
