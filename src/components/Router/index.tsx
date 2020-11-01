@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Routes } from './routes';
 import Onboarding from '../../pages/Onboarding';
 import Onboarding01 from '../../pages/Onboarding/steps/DreamList';

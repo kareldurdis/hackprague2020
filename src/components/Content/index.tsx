@@ -30,6 +30,7 @@ const Content = ({ children, className }: PropsWithChildren<ContentProps>) => {
           href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700"
           rel="stylesheet"
         />
+        <title>Dream Assistant</title>
       </Helmet>
       <main className={classNames(classes.content, className)}>{children}</main>
     </>
