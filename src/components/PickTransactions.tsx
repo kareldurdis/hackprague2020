@@ -1,9 +1,10 @@
-import { Checkbox, useCheckboxState } from 'reakit/Checkbox';
+import { useCheckboxState } from 'reakit/Checkbox';
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 import { formatEuro, getSpendings } from '../utils';
 import { Transaction } from '../__mocks__/transactions';
 import NextLink from './NextLink';
+import Checkbox from './Checkbox';
 
 const useStyles = createUseStyles({
   ul: {
@@ -108,7 +109,12 @@ export const PickTransactions = ({ onPick, nextRoute, transactions }: Props) => 
           return (
             <li key={transaction.id}>
               <label className={classes.label}>
-                <Checkbox {...checkbox} className={classes.checkbox} value={transaction.id} />
+                <Checkbox
+                  checkbox={checkbox}
+                  className={classes.checkbox}
+                  value={transaction.id}
+                  checked={(checkbox.state as string[]).includes(transaction.id)}
+                />
                 <div className={classes.labelContainer}>
                   <div className={classes.left}>
                     <div className={classes.date}>{formatDate(transaction.date)}</div>
