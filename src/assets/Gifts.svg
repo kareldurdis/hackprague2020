@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="121px" height="93px" viewBox="0 0 121 93" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Gifts</title>
+    <g id="Specifikace" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Dreams" transform="translate(-135.000000, -820.000000)">
+            <g id="Gifts" transform="translate(135.000000, 820.000000)">
+                <path d="M19,60 L19,93 L8,93 C4.6862915,93 2,90.3137085 2,87 L2,60 L19,60 Z M57,60 L57,87 C57,90.3137085 54.3137085,93 51,93 L39,93 L39,60 L57,60 Z M19,44 L19,56 L2,56 C0.8954305,56 0,55.1045695 0,54 L0,46 C0,44.8954305 0.8954305,44 2,44 L19,44 Z M58,44 C59.1045695,44 60,44.8954305 60,46 L60,54 C60,55.1045695 59.1045695,56 58,56 L39,56 L39,44 L58,44 Z" id="Shape" fill="#D4D4D4"></path>
+                <path d="M72,28 L72,93 L54,93 C50.6862915,93 48,90.3137085 48,87 L48,28 L72,28 Z M118,28 L118,87 C118,90.3137085 115.313708,93 112,93 L92,93 L92,28 L118,28 Z M72,12 L72,24 L47,24 C45.8954305,24 45,23.1045695 45,22 L45,14 C45,12.8954305 45.8954305,12 47,12 L72,12 Z M119,12 C120.104569,12 121,12.8954305 121,14 L121,22 C121,23.1045695 120.104569,24 119,24 L92,24 L92,12 L119,12 Z" id="Shape" fill="#E5E5E5"></path>
+                <rect id="Rectangle" fill="#FF5050" x="23" y="44" width="12" height="49"></rect>
+                <rect id="Rectangle" fill="#FF5050" x="76" y="12" width="12" height="81"></rect>
+                <rect id="Rectangle" fill="#FF5050" transform="translate(30.000000, 37.000000) rotate(-180.000000) translate(-30.000000, -37.000000) " x="19" y="34" width="22" height="6" rx="3"></rect>
+                <rect id="Rectangle" fill="#FF5050" transform="translate(82.000000, 4.000000) rotate(-180.000000) translate(-82.000000, -4.000000) " x="67" y="0" width="30" height="8" rx="4"></rect>
+            </g>
+        </g>
+    </g>
+</svg>
