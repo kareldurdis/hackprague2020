@@ -10,7 +10,7 @@ const useStyles = createUseStyles({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     maxWidth: 390,
-    padding: [30, 40],
+    padding: [30, 40, 40, 40],
     margin: '0 auto',
     boxSizing: 'border-box',
     minHeight: '100%',
