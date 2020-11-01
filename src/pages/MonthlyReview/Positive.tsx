@@ -16,6 +16,7 @@ import Tooltip from '../../components/Tooltip';
 import Button from '../../components/Button';
 import Plusator from '../../components/Plusator';
 import * as faker from 'faker';
+import HackButton from '../../components/HackButton';
 
 const useStyles = createUseStyles({
   thumbsUpImage: {
@@ -99,6 +100,7 @@ const PositiveMonthlyReview = ({ saved }: MonthlyReviewProps) => {
 
       {/* TODO: Handle transfer */}
       <Button>Transfer</Button>
+      <HackButton />
     </Content>
   );
 };
