@@ -45,7 +45,8 @@ const MonthlyPayments = () => {
               name: `${transaction.payee}: ${transaction.description}`,
               cost: transaction.amount,
               type: PaymentType.monthly,
-            }))
+            })),
+            PaymentType.monthly
           );
         }}
         nextRoute={Routes.Annual_Payments}
