@@ -2,9 +2,8 @@ import React from 'react';
 import { createUseStyles } from 'react-jss';
 import { PickTransactions } from '../../../components/PickTransactions';
 import { Routes } from '../../../components/Router/routes';
-import { useHistory } from 'react-router-dom';
 import { useLocalStorage } from 'react-use';
-import { Transaction } from '../../../__mocks__/transactions';
+import { annualTransactions, Transaction } from '../../../__mocks__/transactions';
 import Content from '../../../components/Content';
 import BackLink from '../../../components/BackLink';
 
@@ -40,7 +39,6 @@ const useStyles = createUseStyles({
 
 const AnnualPayments = () => {
   const classes = useStyles();
-  const history = useHistory();
   const [, setExpenses] = useLocalStorage<Transaction[]>('annual-expenses');
   return (
     <Content>
@@ -57,8 +55,9 @@ const AnnualPayments = () => {
         title={'Annual'}
         onPick={(transactions) => {
           setExpenses(transactions);
-          history.push(Routes.Emergency_intro);
         }}
+        nextRoute={Routes.Emergency_intro}
+        transactions={annualTransactions}
       />
     </Content>
   );

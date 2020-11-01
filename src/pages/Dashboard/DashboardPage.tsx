@@ -3,7 +3,7 @@ import { createUseStyles } from 'react-jss';
 import { Checkbox } from 'reakit';
 import Content from '../../components/Content';
 import DreamCard from '../../components/DreamCard';
-import transactions from '../../__mocks__/transactions';
+import { monthlyTransactions } from '../../__mocks__/transactions';
 import { formatEuro, useStorage } from '../../utils';
 import { ProgressBar } from '../../components/ProgressBar';
 import HackButton from '../../components/HackButton';
@@ -62,7 +62,7 @@ const DasboradPage = () => {
 
       <h3>Payment History</h3>
       <ul>
-        {transactions.slice(0, 3).map((transaction) => {
+        {monthlyTransactions.slice(0, 3).map((transaction) => {
           return <li key={transaction.id}>{transaction.description}</li>;
         })}
       </ul>

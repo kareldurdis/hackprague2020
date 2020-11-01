@@ -3,6 +3,7 @@ import React from 'react';
 import { createUseStyles } from 'react-jss';
 import { formatEuro, getSpendings } from '../utils';
 import { Transaction } from '../__mocks__/transactions';
+import NextLink from './NextLink';
 
 const useStyles = createUseStyles({
   ul: {
@@ -10,6 +11,7 @@ const useStyles = createUseStyles({
     borderBottom: '1px solid #1A5BEF',
     margin: 0,
     padding: [9, 24],
+    marginBottom: 32,
     '& li': {
       listStyle: 'none',
       '&:last-child label': {
@@ -79,18 +81,22 @@ const useStyles = createUseStyles({
 interface Props {
   title?: string;
   onPick: (transactions: Transaction[]) => void;
+  nextRoute: string;
+  transactions: Transaction[];
 }
 
-export const PickTransactions = ({ onPick }: Props) => {
+export const PickTransactions = ({ onPick, nextRoute, transactions }: Props) => {
   const classes = useStyles();
   const checkbox = useCheckboxState({ state: [] });
 
   // Get only negative transactions
-  const spendings = getSpendings();
+  const spendings = getSpendings(transactions);
 
   const picked = (checkbox.state as string[]).map(
     (id) => spendings.find((item) => item.id === id) as Transaction
   );
+
+  const formatDate = (date: Date) => `${date.getMonth()}/${date.getDate()}`;
 
   return (
     <>
@@ -103,7 +109,7 @@ export const PickTransactions = ({ onPick }: Props) => {
                 <Checkbox {...checkbox} className={classes.checkbox} value={transaction.id} />
                 <div className={classes.labelContainer}>
                   <div className={classes.left}>
-                    <div className={classes.date}>10/10</div>
+                    <div className={classes.date}>{formatDate(transaction.date)}</div>
                     <div className={classes.description}>{transaction.description}</div>
                   </div>
                   <div className={classes.amount}>{formatEuro(transaction.amount)}</div>
@@ -113,8 +119,7 @@ export const PickTransactions = ({ onPick }: Props) => {
           );
         })}
       </ul>
-
-      <button onClick={() => onPick(picked)}>Continue</button>
+      <NextLink to={nextRoute} onClick={() => onPick(picked)} />
     </>
   );
 };
