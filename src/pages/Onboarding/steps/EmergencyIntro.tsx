@@ -5,10 +5,11 @@ import { Routes } from '../../../components/Router/routes';
 import BackLink from '../../../components/BackLink';
 import Title from '../../../components/Title';
 import Button from '../../../components/Button';
-import { formatEuro, useStorage } from '../../../utils';
+import { formatEuro } from '../../../utils';
 import { useHistory } from 'react-router-dom';
 import Minus from '../../../assets/Minus.svg';
 import Plus from '../../../assets/Plus.svg';
+import { useDreamsContext } from '../../../context/dreams';
 
 const useStyles = createUseStyles({
   content: {
@@ -78,8 +79,9 @@ const useStyles = createUseStyles({
 const EmergencyIntro = () => {
   const classes = useStyles();
   const history = useHistory();
-  const [amount, setAmount] = useStorage('emergency', 400);
-  const [, setUseOfEmergencyFund] = useStorage('use-emergency', false);
+  const { emergencyFund, setEmergencyFund, setUseEmergencyFund } = useDreamsContext();
+
+  const amount: number = emergencyFund?.cost || 0;
 
   return (
     <Content className={classes.content}>
@@ -90,11 +92,14 @@ const EmergencyIntro = () => {
         <p className={classes.p}>Car broke down? TV? Phone?</p>
         <p className={classes.p}>Emergency fund will help you cover unexpected expenses.</p>
         <div className={classes.amount}>
-          <div className={classes.minus} onClick={() => setAmount(Math.max(0, amount - 50))}>
+          <div
+            className={classes.minus}
+            onClick={() => setEmergencyFund({ cost: Math.max(0, amount - 50) })}
+          >
             <img src={Minus} alt={''} />
           </div>
           {formatEuro(amount)}
-          <div className={classes.plus} onClick={() => setAmount(amount + 50)}>
+          <div className={classes.plus} onClick={() => setEmergencyFund({ cost: amount + 50 })}>
             <img src={Plus} alt={''} />
           </div>
         </div>
@@ -102,7 +107,7 @@ const EmergencyIntro = () => {
           <div
             className={classes.skip}
             onClick={() => {
-              setUseOfEmergencyFund(false);
+              setUseEmergencyFund(false);
               history.push(Routes.Summary);
             }}
           >
@@ -110,7 +115,7 @@ const EmergencyIntro = () => {
           </div>
           <Button
             onClick={() => {
-              setUseOfEmergencyFund(true);
+              setUseEmergencyFund(true);
               history.push(Routes.Summary);
             }}
           >

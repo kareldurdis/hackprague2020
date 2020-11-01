@@ -62,9 +62,7 @@ const Router = () => {
             <DasboradPage />
           </Route>
           <Route path={Routes.Emergency_add}>
-            <EmergencyFundContextProvider>
-              <EmergencyAdd />
-            </EmergencyFundContextProvider>
+            <EmergencyAdd />
           </Route>
           <Route path={Routes.MonthlyReview}>
             <MonthlyReview />

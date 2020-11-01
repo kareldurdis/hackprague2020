@@ -23,6 +23,16 @@ export interface Payment {
   cost: number;
 }
 
+export interface EmergencyFund {
+  cost: number;
+  payment?: number;
+  end?: Date;
+}
+
+const defaultEmergencyFund: EmergencyFund = {
+  cost: 400,
+};
+
 export interface DreamsContextValue {
   dreams: Dream[];
   addNewDream: (dream: Dream) => void;
@@ -32,6 +42,10 @@ export interface DreamsContextValue {
   payments: Payment[];
   addPayment: (payment: Payment) => void;
   setPayments: (payments: Payment[]) => void;
+  emergencyFund: EmergencyFund | null;
+  setEmergencyFund: (emergencyFund: EmergencyFund | null) => void;
+  useEmergencyFund: boolean;
+  setUseEmergencyFund: (useEmergencyFund: boolean) => void;
 }
 
 const DreamsContext = createContext<DreamsContextValue>({
@@ -43,6 +57,10 @@ const DreamsContext = createContext<DreamsContextValue>({
   payments: [],
   addPayment: () => {},
   setPayments: () => {},
+  emergencyFund: defaultEmergencyFund,
+  setEmergencyFund: () => {},
+  useEmergencyFund: false,
+  setUseEmergencyFund: () => {},
 });
 
 interface DreamsContextProviderProps {}
@@ -52,6 +70,11 @@ export const DreamsContextProvider = memo(
     const [dreams, setDreams] = useStorage('dreams', dreamsMock);
     const [payments, setPayments] = useStorage<Payment[]>('payments', []);
     const [onboarded, setIsOnboarded] = useStorage('onboarded', false);
+    const [emergencyFund, setEmergencyFund] = useStorage<EmergencyFund | null>(
+      'emergencyFund',
+      defaultEmergencyFund
+    );
+    const [useEmergencyFund, setUseEmergencyFund] = useStorage('useEmergencyFund', false);
 
     const addNewDream = (dream: Dream) => {
       return setDreams((state) => [...(state || []), dream]);
@@ -71,6 +94,10 @@ export const DreamsContextProvider = memo(
           payments,
           addPayment,
           setPayments,
+          emergencyFund,
+          setEmergencyFund,
+          useEmergencyFund,
+          setUseEmergencyFund,
         }}
       >
         {children}

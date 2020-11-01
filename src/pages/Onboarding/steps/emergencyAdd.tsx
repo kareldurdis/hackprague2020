@@ -10,13 +10,13 @@ import {
 } from 'reakit/Form';
 import { v4 as uuid } from 'uuid';
 import Content from '../../../components/Content';
-import { useEmergencyFundContext } from '../../../context/emergencyFund';
 import getNumber from '../../../utils/getNumber';
 import { useHistory } from 'react-router-dom';
 import { Routes } from '../../../components/Router/routes';
+import { useDreamsContext } from '../../../context/dreams';
 
 const EmergencyAdd = () => {
-  const { setEmergencyFund } = useEmergencyFundContext();
+  const { setEmergencyFund } = useDreamsContext();
   const history = useHistory();
 
   const form = useFormState({
