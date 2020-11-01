@@ -13,5 +13,5 @@ export const sumIncomes = () =>
 
 export function useStorage<T>(key: string, initial: T): [T, Dispatch<SetStateAction<T>>] {
   const [value, setValue] = useLocalStorage(key, initial);
-  return [value || initial, setValue as any];
+  return [value !== undefined ? value : initial, setValue as any];
 }
