@@ -1,30 +1,26 @@
 import classNames from 'classnames';
 import React, { memo } from 'react';
 import { createUseStyles } from 'react-jss';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import Button from './Button';
 
 const useStyles = createUseStyles({
-  nextLink: {
-    padding: 10,
-    border: '1px solid #000',
-    borderRadius: 5,
-    display: 'flex',
-    alignSelf: 'flex-end',
-    textDecoration: 'none',
-  },
+  nextLink: {},
 });
 
 interface Props {
   className?: string;
   to: string;
+  onClick?: () => void;
 }
 
 const NextLink = ({ className, to }: Props) => {
+  const history = useHistory();
   const classes = useStyles();
   return (
-    <Link to={to} className={classNames(className, classes.nextLink)}>
-      Next &gt;
-    </Link>
+    <Button onClick={() => history.push(to)} className={classNames(className, classes.nextLink)}>
+      &gt;
+    </Button>
   );
 };
 

@@ -1,34 +1,80 @@
 import classNames from 'classnames';
-import React, { memo } from 'react';
+import React, { HTMLAttributes, memo } from 'react';
 import { createUseStyles } from 'react-jss';
 import { Dream } from '../context/dreams';
 import Card from './Card';
+import { formatEuro } from '../utils';
+import CheckmarkChecked from '../assets/CheckmarkChecked.svg';
+import CheckmarkUnchecked from '../assets/CheckmarkUnchecked.svg';
 
 const useStyles = createUseStyles({
   card: {
-    width: 300,
-    height: 100,
+    padding: 15,
+    color: '#818181',
+    minHeight: 250,
+  },
+  sides: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  name: {
+    fontWeight: 900,
+    color: '#1C1C1C',
+  },
+  hr: {
+    border: 'none',
+    borderBottom: '1px solid #E6E6E6',
+    padding: 0,
+    margin: [9, 0],
+    width: '100%',
+  },
+  wrap: {
+    width: '100%',
+  },
+  img: {
+    width: '100%',
+    padding: [0, 50],
+    boxSizing: 'border-box',
+  },
+  checkmark: {
+    position: 'absolute',
+    top: 15,
+    right: 15,
+    width: 32,
+    height: 32,
   },
 });
 
-interface Props {
+interface Props extends HTMLAttributes<HTMLElement> {
   className?: string;
-  dream?: Dream;
+  dream: Dream;
   image?: any;
+  checked?: boolean;
 }
 
-const DreamCard = ({ className, dream }: Props) => {
+const DreamCard = ({ checked, className, dream, ...rest }: Props) => {
   const classes = useStyles();
   return (
-    <Card className={classNames(className, classes.card)}>
-      {dream ? (
-        <>
-          <div>{dream.name}</div>
-          <div>{dream.cost}&nbsp;€</div>
-        </>
-      ) : (
-        <div>+</div>
-      )}
+    <Card className={classNames(className, classes.card)} {...rest}>
+      <div className={classes.wrap}>
+        {checked !== undefined ? (
+          <img
+            src={checked ? CheckmarkChecked : CheckmarkUnchecked}
+            alt={''}
+            className={classes.checkmark}
+          />
+        ) : null}
+        <img src={dream.image} alt={dream.name} className={classes.img} />
+        <div className={classes.sides}>
+          <div className={classes.name}>{dream.name}</div>
+          <div>{formatEuro(dream.cost)}</div>
+        </div>
+        <hr className={classes.hr} />
+        <div className={classes.sides}>
+          <div>Jan 19’</div>
+          <div>Mar 21’</div>
+        </div>
+      </div>
     </Card>
   );
 };

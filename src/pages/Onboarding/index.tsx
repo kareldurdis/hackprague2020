@@ -10,6 +10,7 @@ const useStyles = createUseStyles({
     padding: [0, 40, 40, 40],
     display: 'flex',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
 });
 

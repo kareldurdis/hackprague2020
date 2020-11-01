@@ -9,12 +9,11 @@ const useStyles = createUseStyles({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    alignItems: 'center',
     maxWidth: 390,
-    padding: 0,
+    padding: [30, 0],
     margin: '0 auto',
     boxSizing: 'border-box',
-    height: '100%',
+    minHeight: '100%',
   },
 });
 
