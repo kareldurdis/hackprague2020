@@ -30,7 +30,7 @@ const AnnualPayments = () => {
   return (
     <Content>
       <nav>
-        <BackLink to={Routes.Introduction} />
+        <BackLink to={Routes.Montly_Payments} />
       </nav>
       <h1 className={classes.h1}>Annual payments</h1>
 
