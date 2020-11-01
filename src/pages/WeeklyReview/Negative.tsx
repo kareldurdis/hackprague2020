@@ -83,7 +83,7 @@ const NegativeWeeklyReview = ({ spent, budget, week, goal, difference }: WeeklyR
           </div>
         </div>
       </div>
-      <ProgressBar current={spent} total={budget} goal={goal} />
+      <ProgressBar current={Math.min(spent, goal)} total={goal} />
 
       <br />
 
