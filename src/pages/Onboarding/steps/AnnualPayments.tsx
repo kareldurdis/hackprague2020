@@ -6,6 +6,7 @@ import { useLocalStorage } from 'react-use';
 import { annualTransactions, Transaction } from '../../../__mocks__/transactions';
 import Content from '../../../components/Content';
 import BackLink from '../../../components/BackLink';
+import { useDreamsContext, PaymentType } from '../../../context/dreams';
 
 const useStyles = createUseStyles({
   ul: {
@@ -39,7 +40,7 @@ const useStyles = createUseStyles({
 
 const AnnualPayments = () => {
   const classes = useStyles();
-  const [, setExpenses] = useLocalStorage<Transaction[]>('annual-expenses');
+  const { setPayments } = useDreamsContext();
   return (
     <Content>
       <nav>
@@ -53,8 +54,15 @@ const AnnualPayments = () => {
       </p>
       <PickTransactions
         title={'Annual'}
-        onPick={(transactions) => {
-          setExpenses(transactions);
+        onPick={(transactions: Transaction[]) => {
+          setPayments(
+            transactions.map((transaction) => ({
+              id: transaction.id,
+              name: `${transaction.payee}: ${transaction.description}`,
+              cost: transaction.amount,
+              type: PaymentType.annual,
+            }))
+          );
         }}
         nextRoute={Routes.Emergency_intro}
         transactions={annualTransactions}

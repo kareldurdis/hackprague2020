@@ -2,10 +2,10 @@ import React from 'react';
 import { createUseStyles } from 'react-jss';
 import { PickTransactions } from '../../../components/PickTransactions';
 import { Routes } from '../../../components/Router/routes';
-import { useLocalStorage } from 'react-use';
 import { monthlyTransactions, Transaction } from '../../../__mocks__/transactions';
 import Content from '../../../components/Content';
 import BackLink from '../../../components/BackLink';
+import { PaymentType, useDreamsContext } from '../../../context/dreams';
 
 const useStyles = createUseStyles({
   ul: {
@@ -39,7 +39,7 @@ const useStyles = createUseStyles({
 
 const MonthlyPayments = () => {
   const classes = useStyles();
-  const [, setExpenses] = useLocalStorage<Transaction[]>('monthly-expenses');
+  const { setPayments } = useDreamsContext();
 
   return (
     <Content>
@@ -52,8 +52,15 @@ const MonthlyPayments = () => {
         First we need to know your mandatory expenses so we can keep an eye on your spendings
       </p>
       <PickTransactions
-        onPick={(transactions) => {
-          setExpenses(transactions);
+        onPick={(transactions: Transaction[]) => {
+          setPayments(
+            transactions.map((transaction) => ({
+              id: transaction.id,
+              name: `${transaction.payee}: ${transaction.description}`,
+              cost: transaction.amount,
+              type: PaymentType.monthly,
+            }))
+          );
         }}
         nextRoute={Routes.Annual_Payments}
         transactions={monthlyTransactions}

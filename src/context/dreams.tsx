@@ -11,12 +11,41 @@ export interface Dream {
   image?: string;
 }
 
+export enum PaymentType {
+  monthly = 'monthly',
+  annual = 'annual',
+}
+
+export interface Payment {
+  id: string;
+  name: string;
+  type: PaymentType;
+  cost: number;
+}
+
+export interface EmergencyFund {
+  cost: number;
+  payment?: number;
+  end?: Date;
+}
+
+const defaultEmergencyFund: EmergencyFund = {
+  cost: 400,
+};
+
 export interface DreamsContextValue {
   dreams: Dream[];
   addNewDream: (dream: Dream) => void;
   setDreams: (dreams: Dream[]) => void;
   onboarded: boolean;
   setIsOnboarded: (onboarded: boolean) => void;
+  payments: Payment[];
+  addPayment: (payment: Payment) => void;
+  setPayments: (payments: Payment[]) => void;
+  emergencyFund: EmergencyFund | null;
+  setEmergencyFund: (emergencyFund: EmergencyFund | null) => void;
+  useEmergencyFund: boolean;
+  setUseEmergencyFund: (useEmergencyFund: boolean) => void;
 }
 
 const DreamsContext = createContext<DreamsContextValue>({
@@ -25,6 +54,13 @@ const DreamsContext = createContext<DreamsContextValue>({
   onboarded: false,
   setIsOnboarded: () => {},
   setDreams: () => {},
+  payments: [],
+  addPayment: () => {},
+  setPayments: () => {},
+  emergencyFund: defaultEmergencyFund,
+  setEmergencyFund: () => {},
+  useEmergencyFund: false,
+  setUseEmergencyFund: () => {},
 });
 
 interface DreamsContextProviderProps {}
@@ -32,14 +68,38 @@ interface DreamsContextProviderProps {}
 export const DreamsContextProvider = memo(
   ({ children }: PropsWithChildren<DreamsContextProviderProps>) => {
     const [dreams, setDreams] = useStorage('dreams', dreamsMock);
+    const [payments, setPayments] = useStorage<Payment[]>('payments', []);
     const [onboarded, setIsOnboarded] = useStorage('onboarded', false);
+    const [emergencyFund, setEmergencyFund] = useStorage<EmergencyFund | null>(
+      'emergencyFund',
+      defaultEmergencyFund
+    );
+    const [useEmergencyFund, setUseEmergencyFund] = useStorage('useEmergencyFund', false);
 
     const addNewDream = (dream: Dream) => {
       return setDreams((state) => [...(state || []), dream]);
     };
+    const addPayment = (payment: Payment) => {
+      return setPayments((state) => [...(state || []), payment]);
+    };
 
     return (
-      <DreamsContext.Provider value={{ dreams, addNewDream, onboarded, setIsOnboarded, setDreams }}>
+      <DreamsContext.Provider
+        value={{
+          dreams,
+          addNewDream,
+          onboarded,
+          setIsOnboarded,
+          setDreams,
+          payments,
+          addPayment,
+          setPayments,
+          emergencyFund,
+          setEmergencyFund,
+          useEmergencyFund,
+          setUseEmergencyFund,
+        }}
+      >
         {children}
       </DreamsContext.Provider>
     );
