@@ -47,7 +47,8 @@ const AnnualPayments = () => {
               name: `${transaction.payee}: ${transaction.description}`,
               cost: transaction.amount,
               type: PaymentType.annual,
-            }))
+            })),
+            PaymentType.annual
           );
         }}
         nextRoute={Routes.Emergency_intro}

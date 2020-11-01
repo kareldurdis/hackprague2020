@@ -41,7 +41,7 @@ export interface DreamsContextValue {
   setIsOnboarded: (onboarded: boolean) => void;
   payments: Payment[];
   addPayment: (payment: Payment) => void;
-  setPayments: (payments: Payment[]) => void;
+  setPayments: (payments: Payment[], paymentType: PaymentType) => void;
   emergencyFund: EmergencyFund | null;
   setEmergencyFund: (emergencyFund: EmergencyFund | null) => void;
   useEmergencyFund: boolean;
@@ -77,10 +77,17 @@ export const DreamsContextProvider = memo(
     const [useEmergencyFund, setUseEmergencyFund] = useStorage('useEmergencyFund', false);
 
     const addNewDream = (dream: Dream) => {
-      return setDreams((state) => [...(state || []), dream]);
+      return setDreams([...dreams, dream]);
     };
     const addPayment = (payment: Payment) => {
-      return setPayments((state) => [...(state || []), payment]);
+      return setPayments([...payments, payment]);
+    };
+
+    const setPaymentsHandler = (newPayments: Payment[], paymentType: PaymentType) => {
+      return setPayments([
+        ...payments.filter((payment) => payment.type !== paymentType),
+        ...newPayments,
+      ]);
     };
 
     return (
@@ -93,7 +100,7 @@ export const DreamsContextProvider = memo(
           setDreams,
           payments,
           addPayment,
-          setPayments,
+          setPayments: setPaymentsHandler,
           emergencyFund,
           setEmergencyFund,
           useEmergencyFund,
