@@ -161,11 +161,7 @@ const DasboradPage = () => {
         </ul>
       </div>
 
-      <HackButton
-        onNewTransaction={() => {}}
-        onWeeklyReview={() => {}}
-        onMonthlyReview={() => {}}
-      />
+      <HackButton />
     </Content>
   );
 };
