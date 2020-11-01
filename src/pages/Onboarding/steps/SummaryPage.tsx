@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Routes } from '../../../components/Router/routes';
 import { createUseStyles } from 'react-jss';
 import { formatEuro, sumIncomes, useStorage } from '../../../utils';
-import { useDreamsContext } from '../../../context/dreams';
+import { PaymentType, useDreamsContext } from '../../../context/dreams';
 import { Transaction } from '../../../__mocks__/transactions';
 import { useEffect } from 'react';
 import BackLink from '../../../components/BackLink';
@@ -58,17 +58,17 @@ const SpendCard = ({ name, amount }: Props) => {
 const SummaryPage = () => {
   const classes = useStyles();
   const income = sumIncomes();
-  const { setIsOnboarded } = useDreamsContext();
-  const [annual] = useStorage<Transaction[]>('annual-expenses', []);
-  const [monthly] = useStorage<Transaction[]>('monthly-expenses', []);
+  const { payments: savedPayments, setIsOnboarded } = useDreamsContext();
+  const monthly = savedPayments.filter((payment) => payment.type === PaymentType.monthly);
+  const annual = savedPayments.filter((payment) => payment.type === PaymentType.annual);
   const [, setBudget] = useStorage('budget', 0);
   const payments = {
     monthly: monthly.reduce((accumulator, current) => {
-      return accumulator + Math.abs(current.amount);
+      return accumulator + Math.abs(current.cost);
     }, 0),
     dreams: 200,
     annual: annual.reduce((accumulator, current) => {
-      return accumulator + Math.abs(current.amount);
+      return accumulator + Math.abs(current.cost);
     }, 0),
   };
   const budget = income - payments.monthly - payments.dreams - payments.annual / 12;
