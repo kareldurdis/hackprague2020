@@ -11,7 +11,7 @@ const useStyles = createUseStyles({
     justifyContent: 'flex-start',
     alignItems: 'center',
     maxWidth: 390,
-    padding: 0,
+    padding: [0, 40, 40, 40],
     margin: '0 auto',
     boxSizing: 'border-box',
     height: '100%',

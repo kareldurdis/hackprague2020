@@ -6,6 +6,9 @@ import BackLink from '../../../components/BackLink';
 import NextLink from '../../../components/NextLink';
 
 const useStyles = createUseStyles({
+  wrap: {
+    justifyContent: 'space-between',
+  },
   p: {
     margin: [5, 0, 10, 0],
   },
@@ -15,13 +18,13 @@ const Introduction = () => {
   const classes = useStyles();
 
   return (
-    <Content>
+    <Content className={classes.wrap}>
       <nav>
         <BackLink to={Routes.DreamList} />
       </nav>
-      <p className={classes.p}>
+      <h1 className={classes.p}>
         In order to reach your goals, we need to get to know your finances a little better
-      </p>
+      </h1>
       <nav>
         <NextLink to={Routes.Montly_Payments} />
       </nav>

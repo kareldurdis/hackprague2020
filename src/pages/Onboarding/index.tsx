@@ -7,7 +7,6 @@ import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
   wrap: {
-    padding: [0, 40, 40, 40],
     display: 'flex',
     justifyContent: 'space-between',
   },
