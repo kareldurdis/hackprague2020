@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import PositiveWeeklyReview from './Positive';
 import NegativeWeeklyReview from './Negative';
+import HackButton from '../../components/HackButton';
 
 const WeeklyReview = () => {
   // TODO: Load budget data
@@ -12,24 +13,30 @@ const WeeklyReview = () => {
 
   if (difference > 0) {
     return (
-      <PositiveWeeklyReview
+      <>
+        <PositiveWeeklyReview
+          spent={spent}
+          budget={budget}
+          week={week}
+          goal={goal}
+          difference={difference}
+        />
+        <HackButton />
+      </>
+    );
+  }
+
+  return (
+    <>
+      <NegativeWeeklyReview
         spent={spent}
         budget={budget}
         week={week}
         goal={goal}
         difference={difference}
       />
-    );
-  }
-
-  return (
-    <NegativeWeeklyReview
-      spent={spent}
-      budget={budget}
-      week={week}
-      goal={goal}
-      difference={difference}
-    />
+      <HackButton />
+    </>
   );
 };
 
