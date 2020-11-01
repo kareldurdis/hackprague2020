@@ -10,7 +10,7 @@ const useStyles = createUseStyles({
     borderTop: '1px solid #1A5BEF',
     borderBottom: '1px solid #1A5BEF',
     margin: 0,
-    padding: [9, 24],
+    padding: [0, 10],
     marginBottom: 32,
     overflow: 'auto',
     maxHeight: '30vh',
@@ -74,8 +74,7 @@ const useStyles = createUseStyles({
   label: {
     display: 'flex',
     flexDirection: 'row',
-    paddingTop: 10,
-    paddingBottom: 12,
+    padding: [10, 12],
     borderBottom: '1px solid rgba(0,0,0,0.1)',
   },
 });
