@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom';
 
 const useStyles = createUseStyles({
   backLink: {
-    padding: 10,
-    border: '1px solid #000',
-    borderRadius: 5,
     display: 'flex',
     alignSelf: 'flex-start',
     textDecoration: 'none',
+    color: '#1C1C1C',
+    fontWeight: 600,
+    fontSize: 24,
   },
 });
 

@@ -1,26 +1,33 @@
 import classNames from 'classnames';
-import React, { memo, PropsWithChildren } from 'react';
+import React, { HTMLAttributes, memo, PropsWithChildren } from 'react';
 import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
   card: {
     padding: 10,
-    border: '1px solid #000',
-    borderRadius: 5,
+    border: '1px solid #E6E6E6',
+    borderRadius: 26,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-end',
+    boxSizing: 'border-box',
+    width: '100%',
+    position: 'relative',
   },
 });
 
-interface Props {
+interface Props extends HTMLAttributes<HTMLElement> {
   className?: string;
 }
 
-const Card = ({ className, children }: PropsWithChildren<Props>) => {
+const Card = ({ className, children, ...rest }: PropsWithChildren<Props>) => {
   const classes = useStyles();
-  return <div className={classNames(className, classes.card)}>{children}</div>;
+  return (
+    <div className={classNames(className, classes.card)} {...rest}>
+      {children}
+    </div>
+  );
 };
 
 export default memo(Card);

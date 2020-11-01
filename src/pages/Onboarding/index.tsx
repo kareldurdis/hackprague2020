@@ -9,6 +9,7 @@ const useStyles = createUseStyles({
   wrap: {
     display: 'flex',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
 });
 

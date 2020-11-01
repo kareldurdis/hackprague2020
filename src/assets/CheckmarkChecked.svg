@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/Checkmark - checked</title>
+    <g id="Icons/Checkmark---checked" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <circle id="Oval" fill="#58C94A" cx="16" cy="16" r="16"></circle>
+        <g id="Group" transform="translate(2.000000, 2.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <g id="Icons/Arrow">
+                <path d="M16.9828192,2.88755078 C15.6768509,2.88124632 14.6233585,3.93473868 14.6297781,5.24070699 L14.700305,17.281448 L10.573208,17.2124898 C9.26723965,17.2060702 8.21374729,18.2595626 8.2201088,19.5655309 C8.22658653,20.8714992 9.29048715,21.9353998 10.5964555,21.9418194 L17.0874329,22.0232149 C18.3934012,22.0296053 19.4468936,20.9761129 19.4405607,19.6701446 L19.3591077,5.26395449 C19.3526881,3.95798619 18.2887875,2.89408556 16.9828192,2.88755078 Z" id="Arrow" transform="translate(13.830335, 12.455383) rotate(-315.000000) translate(-13.830335, -12.455383) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

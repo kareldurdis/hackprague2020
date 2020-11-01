@@ -16,6 +16,8 @@ const useStyles = createUseStyles({
     textAlign: 'center',
     fontFamily: 'inherit',
     padding: [16, 20],
+    outline: 'none',
+    cursor: 'pointer',
   },
 });
 
