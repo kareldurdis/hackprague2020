@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createUseStyles } from 'react-jss';
 import Content from '../../components/Content';
 import DreamCard from '../../components/DreamCard';
-import transactions from '../../__mocks__/transactions';
+import { monthlyTransactions } from '../../__mocks__/transactions';
 import { formatEuro, useStorage } from '../../utils';
 import { ProgressBar } from '../../components/ProgressBar';
 import HackButton from '../../components/HackButton';
@@ -153,10 +153,9 @@ const DasboradPage = () => {
         ))}
 
         <br />
-
-        <h3 className={classes.h3}>Payment History</h3>
-        <ul className={classes.ul}>
-          {transactions.slice(0, 3).map((transaction) => {
+        <h3>Payment History</h3>
+        <ul>
+          {monthlyTransactions.slice(0, 3).map((transaction) => {
             return <li key={transaction.id}>{transaction.description}</li>;
           })}
         </ul>

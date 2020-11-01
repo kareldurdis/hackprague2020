@@ -2,10 +2,10 @@ import React from 'react';
 import { createUseStyles } from 'react-jss';
 import { PickTransactions } from '../../../components/PickTransactions';
 import { Routes } from '../../../components/Router/routes';
-import { annualTransactions, Transaction } from '../../../__mocks__/transactions';
+import { monthlyTransactions, Transaction } from '../../../__mocks__/transactions';
 import Content from '../../../components/Content';
 import BackLink from '../../../components/BackLink';
-import { useDreamsContext, PaymentType } from '../../../context/dreams';
+import { PaymentType, useDreamsContext } from '../../../context/dreams';
 
 const useStyles = createUseStyles({
   h1: {
@@ -19,42 +19,40 @@ const useStyles = createUseStyles({
     fontSize: 18,
     fontWeight: 500,
     color: '#202020',
-    marginTop: 10,
     margin: [10, 0],
   },
 });
 
-const AnnualPayments = () => {
+const MonthlyPayments = () => {
   const classes = useStyles();
   const { setPayments } = useDreamsContext();
+
   return (
     <Content>
       <nav>
-        <BackLink to={Routes.Montly_Payments} />
+        <BackLink to={Routes.Introduction} />
       </nav>
-      <h1 className={classes.h1}>Annual payments</h1>
+      <h1 className={classes.h1}>Monthly payments</h1>
 
       <p className={classes.p}>
-        Please add your annual payments that you're expecting, so we can save a little every month
-        for them
+        First we need to know your mandatory expenses so we can keep an eye on your spendings
       </p>
       <PickTransactions
-        title={'Annual'}
         onPick={(transactions: Transaction[]) => {
           setPayments(
             transactions.map((transaction) => ({
               id: transaction.id,
               name: `${transaction.payee}: ${transaction.description}`,
               cost: transaction.amount,
-              type: PaymentType.annual,
+              type: PaymentType.monthly,
             }))
           );
         }}
-        nextRoute={Routes.Emergency_intro}
-        transactions={annualTransactions}
+        nextRoute={Routes.Annual_Payments}
+        transactions={monthlyTransactions}
       />
     </Content>
   );
 };
 
-export default AnnualPayments;
+export default MonthlyPayments;
