@@ -89,11 +89,49 @@ const useStyles = createUseStyles({
     paddingBottom: 18,
   },
   ul: {
-    padding: 0,
     margin: 0,
+    padding: 0,
+    overflow: 'auto',
+    maxHeight: '30vh',
+    listStyle: 'none',
     '& li': {
       listStyle: 'none',
+      '&:last-child label': {
+        borderBottom: 'none',
+      },
     },
+  },
+  labelContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'space-between',
+  },
+  date: {
+    fontSize: 14,
+    fontWeight: 500,
+    color: 'rgba(28, 28, 28, 0.5)',
+  },
+  description: {
+    color: 'rgba(28, 28, 28, 1)',
+    fontSize: 16,
+    fontWeight: 900,
+  },
+  amount: {
+    color: 'rgba(28, 28, 28, 0.55)',
+    fontSize: 16,
+    fontWeight: 600,
+    alignSelf: 'center',
+    paddingLeft: 10,
+  },
+  left: {
+    flexDirection: 'column',
+  },
+  label: {
+    display: 'flex',
+    flexDirection: 'row',
+    padding: [10, 0],
+    borderBottom: '1px solid rgba(0,0,0,0.1)',
   },
 });
 
@@ -103,6 +141,8 @@ const DasboradPage = () => {
   const weeklyBudget = budget / 4;
   const available = weeklyBudget - spent;
   const { dreams } = useDreamsContext();
+
+  const formatDate = (date: Date) => `${date.getMonth()}/${date.getDate()}`;
 
   const classes = useStyles({ progress: (spent / weeklyBudget) * 100 });
 
@@ -157,9 +197,23 @@ const DasboradPage = () => {
 
         <br />
         <h3>Payment History</h3>
-        <ul>
+        <ul className={classes.ul}>
           {monthlyTransactions.slice(0, 3).map((transaction) => {
-            return <li key={transaction.id}>{transaction.description}</li>;
+            return (
+              <>
+                <li key={transaction.id}>
+                  <div className={classes.label}>
+                    <div className={classes.labelContainer}>
+                      <div className={classes.left}>
+                        <div className={classes.date}>{formatDate(transaction.date)}</div>
+                        <div className={classes.description}>{transaction.description}</div>
+                      </div>
+                      <div className={classes.amount}>{formatEuro(transaction.amount)}</div>
+                    </div>
+                  </div>
+                </li>
+              </>
+            );
           })}
         </ul>
       </div>
