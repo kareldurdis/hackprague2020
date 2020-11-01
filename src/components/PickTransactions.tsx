@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react';
 import Content from './Content';
 import { Input } from 'reakit/Input';
 import { createUseStyles } from 'react-jss';
-import BackLink from './BackLink';
-import { Routes } from './Router/routes';
 import { formatEuro, getSpendings } from '../utils';
 import { Transaction } from '../__mocks__/transactions';
 
@@ -22,14 +20,32 @@ const useStyles = createUseStyles({
     height: '100%',
     background: 'white',
   },
+  h1: {
+    fontSize: 46,
+    lineHeight: '48px',
+    color: '#1A5BEF',
+    fontWeight: 700,
+    marginBottom: 12,
+  },
+  h2: {
+    fontSize: 18,
+    color: '#1A5BEF',
+  },
+  p: {
+    fontSize: 18,
+    fontWeight: 500,
+    color: '#202020',
+    marginTop: 10,
+    marginBottom: 47,
+  },
 });
 
 interface Props {
-  title: string;
+  title?: string;
   onPick: (transactions: Transaction[]) => void;
 }
 
-export const PickTransactions = ({ title, onPick }: Props) => {
+export const PickTransactions = ({ onPick }: Props) => {
   const classes = useStyles();
   const checkbox = useCheckboxState({ state: [] });
   const [showPopup, setPopupVisibility] = useState(false);
@@ -51,14 +67,9 @@ export const PickTransactions = ({ title, onPick }: Props) => {
   };
 
   return (
-    <Content>
-      <nav>
-        <BackLink to={Routes.Introduction} />
-      </nav>
-      <h1>{title} payments</h1>
-
+    <>
       <div>
-        Choices:
+        <h2>Choose transactions</h2>
         <ul>
           {picked.map((transaction) => {
             return (
@@ -124,6 +135,6 @@ export const PickTransactions = ({ title, onPick }: Props) => {
           </Content>
         </div>
       ) : null}
-    </Content>
+    </>
   );
 };

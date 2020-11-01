@@ -3,7 +3,7 @@ import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import { Routes } from './routes';
 import Onboarding from '../../pages/Onboarding';
 import Onboarding01 from '../../pages/Onboarding/steps/DreamList';
-import MontlyPayments from '../../pages/Onboarding/steps/MontlyPayments';
+import MonthlyPayments from '../../pages/Onboarding/steps/MonthlyPayments';
 import AnnualPayments from '../../pages/Onboarding/steps/AnnualPayments';
 import Homepage from '../../pages/Homepage';
 import NewDream from '../../pages/Dream/new';
@@ -44,7 +44,7 @@ const Router = () => {
             </DreamsContextProvider>
           </Route>
           <Route path={Routes.Montly_Payments}>
-            <MontlyPayments />
+            <MonthlyPayments />
           </Route>
           <Route path={Routes.Annual_Payments}>
             <AnnualPayments />

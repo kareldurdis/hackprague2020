@@ -1,8 +1,8 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { createUseStyles } from 'react-jss';
 import { PickTransactions } from '../../../components/PickTransactions';
 import { Routes } from '../../../components/Router/routes';
-import { useHistory } from 'react-router-dom';
 import { useLocalStorage } from 'react-use';
 import { Transaction } from '../../../__mocks__/transactions';
 import Content from '../../../components/Content';
@@ -38,30 +38,29 @@ const useStyles = createUseStyles({
   },
 });
 
-const AnnualPayments = () => {
+const MonthlyPayments = () => {
   const classes = useStyles();
   const history = useHistory();
-  const [, setExpenses] = useLocalStorage<Transaction[]>('annual-expenses');
+  const [, setExpenses] = useLocalStorage<Transaction[]>('monthly-expenses');
+
   return (
     <Content>
       <nav>
         <BackLink to={Routes.Introduction} />
       </nav>
-      <h1 className={classes.h1}>Annual payments</h1>
+      <h1 className={classes.h1}>Monthly payments</h1>
 
       <p className={classes.p}>
-        Please add your annual payments that you're expecting, so we can save a little every month
-        for them
+        First we need to know your mandatory expenses so we can keep an eye on your spendings
       </p>
       <PickTransactions
-        title={'Annual'}
         onPick={(transactions) => {
           setExpenses(transactions);
-          history.push(Routes.Emergency_intro);
+          history.push(Routes.Annual_Payments);
         }}
       />
     </Content>
   );
 };
 
-export default AnnualPayments;
+export default MonthlyPayments;
