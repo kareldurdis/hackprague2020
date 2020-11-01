@@ -6,6 +6,7 @@ import Card from './Card';
 import { formatEuro } from '../utils';
 import CheckmarkChecked from '../assets/CheckmarkChecked.svg';
 import CheckmarkUnchecked from '../assets/CheckmarkUnchecked.svg';
+import Plusator from './Plusator';
 
 const useStyles = createUseStyles({
   card: {
@@ -53,6 +54,11 @@ const useStyles = createUseStyles({
     background: 'rgb(88, 201, 74)',
     height: '100%',
   },
+  plusator: {
+    position: 'absolute',
+    right: 10,
+    top: 10,
+  },
 });
 
 interface Props extends HTMLAttributes<HTMLElement> {
@@ -61,13 +67,15 @@ interface Props extends HTMLAttributes<HTMLElement> {
   image?: any;
   checked?: boolean;
   progress?: number;
+  plusator?: number;
 }
 
-const DreamCard = ({ checked, className, dream, progress, ...rest }: Props) => {
+const DreamCard = ({ checked, className, dream, progress, plusator, ...rest }: Props) => {
   const classes = useStyles();
   return (
     <Card className={classNames(className, classes.card)} {...rest}>
       <div className={classes.wrap}>
+        {plusator ? <Plusator className={classes.plusator} amount={plusator} /> : null}
         {checked !== undefined ? (
           <img
             src={checked ? CheckmarkChecked : CheckmarkUnchecked}
