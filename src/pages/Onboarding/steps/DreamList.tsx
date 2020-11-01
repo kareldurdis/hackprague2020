@@ -1,6 +1,5 @@
-import React, { memo, useState } from 'react';
+import React, { memo } from 'react';
 import { createUseStyles } from 'react-jss';
-import { Link } from 'react-router-dom';
 import Content from '../../../components/Content';
 import DreamCard from '../../../components/DreamCard';
 import { Routes } from '../../../components/Router/routes';
@@ -8,6 +7,8 @@ import NextLink from '../../../components/NextLink';
 import { useDreamsContext } from '../../../context/dreams';
 import Title from '../../../components/Title';
 import BackLink from '../../../components/BackLink';
+import dreams from '../../../__mocks__/dreams';
+import { useStorage } from '../../../utils';
 
 const useStyles = createUseStyles({
   dreamCard: {
@@ -25,8 +26,8 @@ const useStyles = createUseStyles({
 
 const DreamList = () => {
   const classes = useStyles();
-  const { dreams, setDreams } = useDreamsContext();
-  const [selected, setSelected] = useState([dreams[1].id]);
+  const { setDreams } = useDreamsContext();
+  const [selected, setSelected] = useStorage<string[]>('selected-dreams', []);
 
   return (
     <Content>
@@ -44,9 +45,9 @@ const DreamList = () => {
                 checked={isSelected}
                 onClick={() => {
                   if (isSelected) {
-                    setSelected((state) => state.filter((item) => item !== dream.id));
+                    setSelected(selected.filter((item) => item !== dream.id));
                   } else {
-                    setSelected((state) => [...state, dream.id]);
+                    setSelected([...selected, dream.id]);
                   }
                 }}
               />
@@ -55,7 +56,10 @@ const DreamList = () => {
         })}
       </ul>
       <nav>
-        <NextLink to={Routes.Introduction} />
+        <NextLink
+          onClick={() => setDreams(dreams.filter((dream) => selected.includes(dream.id)))}
+          to={Routes.Introduction}
+        />
       </nav>
     </Content>
   );
