@@ -6,11 +6,17 @@ import ThumbsUpImg from '../../assets/thumbs-up.png';
 import { Link } from 'react-router-dom';
 import { Routes } from '../../components/Router/routes';
 import ProgressBar from '../../components/ProgressBar';
-import { Button } from 'reakit';
 import Card from '../../components/Card';
 import classNames from 'classnames';
 import { useDreamsContext } from '../../context/dreams';
-import DreamError from '../Dream/error';
+import Title from '../../components/Title';
+import DreamCard from '../../components/DreamCard';
+import { SpendCard } from '../../components/SpendCard';
+import Tooltip from '../../components/Tooltip';
+import Button from '../../components/Button';
+import Plusator from '../../components/Plusator';
+import * as faker from 'faker';
+import HackButton from '../../components/HackButton';
 
 const useStyles = createUseStyles({
   thumbsUpImage: {
@@ -45,95 +51,56 @@ const useStyles = createUseStyles({
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
+  content: {
+    background: 'rgba(187, 207, 253, 0.2)',
+  },
+  title: {
+    paddingBottom: 33,
+  },
+  tooltip: {
+    margin: 0,
+  },
+  card: {
+    background: 'white',
+    marginBottom: 15,
+  },
 });
 
 const PositiveMonthlyReview = ({ saved }: MonthlyReviewProps) => {
   const classes = useStyles();
   const { dreams } = useDreamsContext();
 
-  // TODO: How to select a dream to show?
-  const dream = dreams[0];
   const dreamSaved = 300;
 
   return (
-    <Content>
-      <h1>Monthly review</h1>
+    <Content className={classes.content}>
+      <Title className={classes.title}>Monthly review</Title>
 
-      <p>
-        Excellent! You've managed to stay within your spending budget. Now is the time to transfer
-        saved money to your goals.
-      </p>
+      <SpendCard name={'You Saved'} amount={saved} positive />
+      <Tooltip left={50} className={classes.tooltip}>
+        <strong>Excellent!</strong> You've managed to stay within your spending budget. Now is the
+        time to transfer saved money to your goals.
+      </Tooltip>
 
-      <div className={classes.table}>
-        <div className={classes.tableRow}>
-          <div>
-            <img className={classes.thumbsUpImage} src={ThumbsUpImg} alt="Good job!" />
-            You saved
-          </div>
-          <div>{saved} €</div>
-        </div>
+      <h3>Money Transfer</h3>
 
-        <Button className={classNames(classes.tableRow, classes.button)}>
-          <Card>
-            <div className={classes.table}>
-              <div className={classes.tableRow}>
-                <div>
-                  <img className={classes.thumbsUpImage} src={ThumbsUpImg} alt="Good job!" />
-                  Next month budget
-                </div>
-                <div>add {saved} €</div>
-              </div>
-            </div>
-          </Card>
-        </Button>
-      </div>
+      {dreams.map((dream) => (
+        <DreamCard
+          dream={dream}
+          progress={faker.random.number({ min: 25, max: 80 })}
+          key={dream.id}
+          className={classes.card}
+          plusator={saved}
+        />
+      ))}
 
-      {dream && (
-        <Card className={classes.columnCard}>
-          <div className={classes.table}>
-            <div className={classes.tableRow}>
-              <div>
-                <img className={classes.thumbsUpImage} src={ThumbsUpImg} alt="Good job!" />
-                Saved {dreamSaved}&nbsp;€
-              </div>
-              <Link to={`${Routes.DreamDetail}/${dream.id}`}>Options</Link>
-            </div>
-          </div>
+      <SpendCard name={'Next Week Budget'} amount={saved} plusator />
 
-          {dream.image && <img src={dream.image} className={classes.dreamImage} alt="" />}
-
-          <div className={classes.table}>
-            <div className={classes.tableRow}>
-              <div>{dream.name}</div>
-              <div>{dream.cost}&nbsp;€</div>
-            </div>
-          </div>
-
-          <ProgressBar current={dreamSaved} total={dream.cost} />
-
-          <Button className={classes.button}>
-            <Card>Add {saved}&nbsp;€</Card>
-          </Button>
-        </Card>
-      )}
-
-      <Button className={classes.button}>
-        <Card className={classes.columnCard}>
-          <div>Annual payments</div>
-          <div className={classes.table}>
-            <div className={classes.tableRow}>
-              <div>
-                <img className={classes.thumbsUpImage} src={ThumbsUpImg} alt="Good job!" />
-                Next month budget
-              </div>
-              <div>add {saved} €</div>
-            </div>
-          </div>
-        </Card>
-      </Button>
+      <SpendCard name={'Annual Payments'} amount={10} />
 
       {/* TODO: Handle transfer */}
       <Button>Transfer</Button>
+      <HackButton />
     </Content>
   );
 };

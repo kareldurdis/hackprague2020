@@ -10,6 +10,7 @@ import * as faker from 'faker';
 import Title from '../../components/Title';
 import classNames from 'classnames';
 import { useDreamsContext } from '../../context/dreams';
+import Tooltip from '../../components/Tooltip';
 
 const useStyles = createUseStyles({
   table: {
@@ -165,19 +166,21 @@ const DasboradPage = () => {
 
         <ProgressBar current={spent} total={weeklyBudget} />
 
-        <div className={classes.tooltip}>
-          <div className={classes.thumb}>👍</div>
-          {available >= 0 ? (
-            <>
-              You're doing good! <strong>You can spend {formatEuro(available)} this week.</strong>
-            </>
-          ) : (
-            <>
-              You've already spent your weekly budget. You should cut your expenses until end of the
-              week.
-            </>
-          )}
-        </div>
+        <Tooltip left={(spent / weeklyBudget) * 100}>
+          <>
+            <div className={classes.thumb}>👍</div>
+            {available >= 0 ? (
+              <>
+                You're doing good! <strong>You can spend {formatEuro(available)} this week.</strong>
+              </>
+            ) : (
+              <>
+                You've already spent your weekly budget. You should cut your expenses until end of
+                the week.
+              </>
+            )}
+          </>
+        </Tooltip>
       </div>
 
       <div className={classes.bottomContent}>

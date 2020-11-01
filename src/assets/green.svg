@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icons/Checkmark - unchecked</title>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Buttons/Secondary-48-px---icon,-text" transform="translate(-206.000000, -8.000000)">
+            <g id="Icons/Checkmark---unchecked" transform="translate(206.000000, 8.000000)">
+                <circle id="Oval" fill="#FFFFFF" fill-rule="nonzero" cx="16" cy="16" r="16"></circle>
+                <g id="Icons/Arrow" transform="translate(2.000000, 2.000000)" fill="#58C94A">
+                    <path d="M14.5,4.65076017 C15.8807119,4.65076017 17,5.7700483 17,7.15076017 L17,11.1507602 L21,11.1507602 C22.3807119,11.1507602 23.5,12.2700483 23.5,13.6507602 C23.5,15.031472 22.3807119,16.1507602 21,16.1507602 L17,16.1507602 L17,20.1507602 C17,21.531472 15.8807119,22.6507602 14.5,22.6507602 C13.1192881,22.6507602 12,21.531472 12,20.1507602 L12,16.1507602 L8,16.1507602 C6.61928813,16.1507602 5.5,15.031472 5.5,13.6507602 C5.5,12.2700483 6.61928813,11.1507602 8,11.1507602 L12,11.1507602 L12,7.15076017 C12,5.7700483 13.1192881,4.65076017 14.5,4.65076017 Z" id="Combined-Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

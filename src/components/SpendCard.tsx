@@ -2,6 +2,7 @@ import { formatEuro } from '../utils';
 import * as React from 'react';
 import { createUseStyles } from 'react-jss';
 import classNames from 'classnames';
+import Plusator from './Plusator';
 
 const useStyles = createUseStyles({
   card: {
@@ -12,6 +13,7 @@ const useStyles = createUseStyles({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   name: {
     fontWeight: 'bold',
@@ -31,15 +33,16 @@ interface Props {
   monthly?: number;
   positive?: boolean;
   className?: string;
+  plusator?: boolean;
 }
 
-export const SpendCard = ({ className, name, amount, positive }: Props) => {
+export const SpendCard = ({ className, name, amount, positive, plusator }: Props) => {
   const classes = useStyles();
   return (
     <div className={classNames(classes.card, className)}>
       <div className={classes.name}>{name}</div>
       <div className={classNames(classes.price, { [classes.green]: positive })}>
-        {formatEuro(amount)}
+        {plusator ? <Plusator amount={amount} /> : formatEuro(amount)}
       </div>
     </div>
   );
