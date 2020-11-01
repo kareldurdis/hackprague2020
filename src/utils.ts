@@ -4,7 +4,7 @@ import { Dispatch, SetStateAction } from 'react';
 import numeral from 'numeral';
 
 export const formatEuro = (amount: number) =>
-  `${numeral(amount).format('0,0').replace(',', ' ')} €`;
+  `${numeral(amount).format('0,0').replace(',', ' ')}\u00a0€`;
 
 export const getSpendings = (transactions: Transaction[]) =>
   transactions.filter((transaction) => transaction.amount < 0);
