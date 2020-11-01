@@ -14,11 +14,19 @@ interface Props {
   onClick?: () => void;
 }
 
-const NextLink = ({ className, to }: Props) => {
+const NextLink = ({ className, to, onClick }: Props) => {
   const history = useHistory();
   const classes = useStyles();
   return (
-    <Button onClick={() => history.push(to)} className={classNames(className, classes.nextLink)}>
+    <Button
+      onClick={() => {
+        history.push(to);
+        if (onClick) {
+          onClick();
+        }
+      }}
+      className={classNames(className, classes.nextLink)}
+    >
       &gt;
     </Button>
   );
