@@ -18,6 +18,11 @@ const dreams: Dream[] = [
     name: 'Christmass Gifts',
     cost: 1000,
   },
+  {
+    id: '4',
+    name: 'Something Else',
+    cost: 250,
+  },
 ];
 
 export default dreams;

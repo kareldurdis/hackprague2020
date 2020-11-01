@@ -64,7 +64,7 @@ const DreamCard = ({ checked, className, dream, ...rest }: Props) => {
             className={classes.checkmark}
           />
         ) : null}
-        <img src={dream.image} alt={dream.name} className={classes.img} />
+        {dream.image ? <img src={dream.image} alt={dream.name} className={classes.img} /> : null}
         <div className={classes.sides}>
           <div className={classes.name}>{dream.name}</div>
           <div>{formatEuro(dream.cost)}</div>
