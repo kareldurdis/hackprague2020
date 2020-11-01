@@ -10,6 +10,7 @@ const useStyles = createUseStyles({
     fontWeight: 700,
     marginTop: 14,
     marginBottom: 0,
+    lineHeight: '48px',
   },
 });
 

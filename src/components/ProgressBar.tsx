@@ -4,15 +4,17 @@ import { createUseStyles } from 'react-jss';
 const useStyles = createUseStyles({
   slider: {
     width: '100%',
-    background: 'black',
+    background: '#D1DEFC',
     position: 'relative',
-    height: 5,
+    height: 16,
+    borderRadius: 6,
   },
   inner: {
     position: 'absolute',
     left: 0,
     top: 0,
     height: '100%',
+    borderRadius: 6,
   },
   goal: {
     height: 9,
@@ -43,7 +45,7 @@ export const ProgressBar = ({ current, total, goal }: Props) => {
     <div className={classes.slider}>
       <div
         className={classes.inner}
-        style={{ width: `${progress}%`, background: isOk ? 'green' : 'red' }}
+        style={{ width: `${progress}%`, background: isOk ? '#1A5BEF' : '#1A5BEF' }}
       />
       {goal !== undefined ? (
         <div className={classes.goal} style={{ left: `${goalProgress}%` }} />

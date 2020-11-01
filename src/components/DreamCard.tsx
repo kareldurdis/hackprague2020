@@ -43,6 +43,16 @@ const useStyles = createUseStyles({
     width: 32,
     height: 32,
   },
+  slider: {
+    width: '100%',
+    background: 'rgb(230, 230, 230)',
+    height: 4,
+    margin: [9, 0],
+  },
+  inner: {
+    background: 'rgb(88, 201, 74)',
+    height: '100%',
+  },
 });
 
 interface Props extends HTMLAttributes<HTMLElement> {
@@ -50,9 +60,10 @@ interface Props extends HTMLAttributes<HTMLElement> {
   dream: Dream;
   image?: any;
   checked?: boolean;
+  progress?: number;
 }
 
-const DreamCard = ({ checked, className, dream, ...rest }: Props) => {
+const DreamCard = ({ checked, className, dream, progress, ...rest }: Props) => {
   const classes = useStyles();
   return (
     <Card className={classNames(className, classes.card)} {...rest}>
@@ -69,7 +80,13 @@ const DreamCard = ({ checked, className, dream, ...rest }: Props) => {
           <div className={classes.name}>{dream.name}</div>
           <div>{formatEuro(dream.cost)}</div>
         </div>
-        <hr className={classes.hr} />
+        {progress !== undefined ? (
+          <div className={classes.slider}>
+            <div style={{ width: `${progress}%` }} className={classes.inner} />
+          </div>
+        ) : (
+          <hr className={classes.hr} />
+        )}
         <div className={classes.sides}>
           <div>Jan 19’</div>
           <div>Mar 21’</div>
