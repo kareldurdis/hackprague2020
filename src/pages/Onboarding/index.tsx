@@ -1,14 +1,27 @@
 import React, { memo } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Content from '../../components/Content';
 import { Routes } from '../../components/Router/routes';
+import Button from '../../components/Button';
+import { createUseStyles } from 'react-jss';
+
+const useStyles = createUseStyles({
+  wrap: {
+    padding: [0, 40, 40, 40],
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+});
 
 const Onboarding = () => {
+  const classes = useStyles();
+  const history = useHistory();
   return (
-    <Content>
-      <h1>Dream Assistant</h1>
+    <Content className={classes.wrap}>
+      <div />
+      <h1>Save to live your dreams.</h1>
 
-      <Link to={Routes.DreamList}>Start dreaming</Link>
+      <Button onClick={() => history.push(Routes.DreamList)}>Start dreaming</Button>
     </Content>
   );
 };

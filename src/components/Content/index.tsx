@@ -1,6 +1,7 @@
 import React, { memo, PropsWithChildren } from 'react';
 import { createUseStyles } from 'react-jss';
 import { Helmet } from 'react-helmet';
+import classNames from 'classnames';
 
 const useStyles = createUseStyles({
   content: {
@@ -9,15 +10,19 @@ const useStyles = createUseStyles({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    maxWidth: 480,
-    padding: 20,
+    maxWidth: 390,
+    padding: 0,
     margin: '0 auto',
+    boxSizing: 'border-box',
+    height: '100%',
   },
 });
 
-interface ContentProps {}
+interface ContentProps {
+  className?: string;
+}
 
-const Content = ({ children }: PropsWithChildren<ContentProps>) => {
+const Content = ({ children, className }: PropsWithChildren<ContentProps>) => {
   const classes = useStyles();
   return (
     <>
@@ -27,7 +32,7 @@ const Content = ({ children }: PropsWithChildren<ContentProps>) => {
           rel="stylesheet"
         />
       </Helmet>
-      <main className={classes.content}>{children}</main>
+      <main className={classNames(classes.content, className)}>{children}</main>
     </>
   );
 };
