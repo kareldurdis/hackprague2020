@@ -66,6 +66,7 @@ const useStyles = createUseStyles({
     fontSize: 16,
     fontWeight: 600,
     alignSelf: 'center',
+    paddingLeft: 10,
   },
   left: {
     flexDirection: 'column',
