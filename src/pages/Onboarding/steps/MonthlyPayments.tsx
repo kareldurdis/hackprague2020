@@ -8,32 +8,18 @@ import BackLink from '../../../components/BackLink';
 import { PaymentType, useDreamsContext } from '../../../context/dreams';
 
 const useStyles = createUseStyles({
-  ul: {
-    '& li': {
-      listStyle: 'none',
-    },
-  },
-  popup: {
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    width: '100%',
-    height: '100%',
-    background: 'white',
-  },
   h1: {
     fontSize: 46,
     lineHeight: '48px',
     color: '#1A5BEF',
     fontWeight: 700,
-    marginBottom: 12,
+    margin: [12, 0],
   },
   p: {
     fontSize: 18,
     fontWeight: 500,
     color: '#202020',
-    marginTop: 10,
-    marginBottom: 47,
+    margin: [10, 0],
   },
 });
 

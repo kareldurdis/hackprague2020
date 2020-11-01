@@ -12,6 +12,8 @@ const useStyles = createUseStyles({
     margin: 0,
     padding: [9, 24],
     marginBottom: 32,
+    overflow: 'auto',
+    maxHeight: '30vh',
     '& li': {
       listStyle: 'none',
       '&:last-child label': {
