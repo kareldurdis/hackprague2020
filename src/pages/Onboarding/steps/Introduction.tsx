@@ -17,7 +17,7 @@ const Introduction = () => {
   return (
     <Content>
       <nav>
-        <BackLink to={Routes.Onboarding_01} />
+        <BackLink to={Routes.DreamList} />
       </nav>
       <p className={classes.p}>
         In order to reach your goals, we need to get to know your finances a little better

@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import { Routes } from './routes';
 import Onboarding from '../../pages/Onboarding';
-import Onboarding01 from '../../pages/Onboarding/steps/01';
+import Onboarding01 from '../../pages/Onboarding/steps/DreamList';
 import MontlyPayments from '../../pages/Onboarding/steps/MontlyPayments';
 import AnnualPayments from '../../pages/Onboarding/steps/AnnualPayments';
 import Homepage from '../../pages/Homepage';
@@ -29,7 +29,7 @@ const Router = () => {
           <Route path={Routes.Onboarding} exact>
             <Onboarding />
           </Route>
-          <Route path={Routes.Onboarding_01}>
+          <Route path={Routes.DreamList}>
             <Onboarding01 />
           </Route>
           <Route path={Routes.Introduction}>
@@ -38,7 +38,7 @@ const Router = () => {
           <Route path={Routes.NewDream}>
             <NewDream />
           </Route>
-          <Route path={Routes.DreamDetail}>
+          <Route path={`${Routes.DreamDetail}/:id`}>
             <DreamsContextProvider>
               <DreamDetail />
             </DreamsContextProvider>

@@ -13,7 +13,6 @@ import { v4 as uuid } from 'uuid';
 import dayjs from 'dayjs';
 import getNumber from '../../utils/getNumber';
 import { useHistory } from 'react-router-dom';
-import Router from '../../components/Router';
 import { Routes } from '../../components/Router/routes';
 
 const NewDream = () => {
@@ -51,7 +50,7 @@ const NewDream = () => {
         end: end.toDate(),
       };
       addNewDream(newDream);
-      history.push(Routes.Onboarding_01);
+      history.push(Routes.DreamList);
     },
   });
 

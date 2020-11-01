@@ -8,7 +8,7 @@ const Onboarding = () => {
     <Content>
       <h1>Dream Assistant</h1>
 
-      <Link to={Routes.Onboarding_01}>Start dreaming</Link>
+      <Link to={Routes.DreamList}>Start dreaming</Link>
     </Content>
   );
 };

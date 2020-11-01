@@ -13,7 +13,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const OnboardingStep01 = () => {
+const DreamList = () => {
   const classes = useStyles();
   const { dreams } = useDreamsContext();
 
@@ -24,7 +24,7 @@ const OnboardingStep01 = () => {
       <ul>
         {dreams.map((dream) => (
           <li key={dream.id}>
-            <Link to={Routes.Onboarding_01}>
+            <Link to={`${Routes.DreamDetail}/${dream.id}`}>
               <DreamCard className={classes.dreamCard} dream={dream} />
             </Link>
           </li>
@@ -43,4 +43,4 @@ const OnboardingStep01 = () => {
   );
 };
 
-export default memo(OnboardingStep01);
+export default memo(DreamList);
