@@ -3,9 +3,14 @@ import React, { memo } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useHistory } from 'react-router-dom';
 import Button from './Button';
+import Arrow from './Arrow';
 
 const useStyles = createUseStyles({
-  nextLink: {},
+  nextLink: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 interface Props {
@@ -19,7 +24,7 @@ const NextLink = ({ className, to }: Props) => {
   const classes = useStyles();
   return (
     <Button onClick={() => history.push(to)} className={classNames(className, classes.nextLink)}>
-      &gt;
+      <Arrow color="#fff" direction="right" />
     </Button>
   );
 };
