@@ -7,17 +7,34 @@ import { formatEuro, sumIncomes, useStorage } from '../../../utils';
 import { useDreamsContext } from '../../../context/dreams';
 import { Transaction } from '../../../__mocks__/transactions';
 import { useEffect } from 'react';
+import BackLink from '../../../components/BackLink';
+import NextLink from '../../../components/NextLink';
 
 const useStyles = createUseStyles({
+  content: {
+    backgroundColor: 'rgba(187, 207, 253, 0.2)',
+  },
+  mainHeading: {
+    color: '#1A5BEF',
+    fontSize: 46,
+  },
   card: {
-    border: '1px solid black',
+    border: '1px solid #E6E6E6',
+    borderRadius: 34,
     padding: 20,
-    width: '100%',
-    maxWidth: 200,
     marginBottom: 20,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  name: {
+    fontWeight: 'bold',
   },
   price: {
-    textAlign: 'right',
+    color: '#818181',
+    fontWeight: 'bold',
+  },
+  button: {
     marginTop: 20,
   },
 });
@@ -28,20 +45,18 @@ interface Props {
   monthly?: number;
 }
 
-const SpendCard = ({ name, amount, monthly }: Props) => {
+const SpendCard = ({ name, amount }: Props) => {
   const classes = useStyles();
   return (
     <div className={classes.card}>
-      {name}
-      <br />
-      <div className={classes.price}>
-        {formatEuro(amount)} {monthly !== undefined ? `${formatEuro(monthly)} / month` : ''}
-      </div>
+      <div className={classes.name}>{name}</div>
+      <div className={classes.price}>{formatEuro(amount)}</div>
     </div>
   );
 };
 
 const SummaryPage = () => {
+  const classes = useStyles();
   const income = sumIncomes();
   const { setIsOnboarded } = useDreamsContext();
   const [annual] = useStorage<Transaction[]>('annual-expenses', []);
@@ -63,17 +78,19 @@ const SummaryPage = () => {
   }, [budget, setBudget]);
 
   return (
-    <Content>
-      <h1>Summary</h1>
-      <h2>Monthly budget</h2>
+    <Content className={classes.content}>
+      <BackLink to={Routes.Emergency_intro} />
+      <h1 className={classes.mainHeading}>Monthly budget</h1>
       <SpendCard name={'Analyzed income'} amount={income} />
       <SpendCard name={'Monthly payments'} amount={payments.monthly} />
       <SpendCard name={'Dreams payments'} amount={payments.dreams} />
-      <SpendCard name={'Annual payments'} amount={payments.annual} monthly={payments.annual / 12} />
-      Spending budget {formatEuro(budget)}
-      <Link to={Routes.Dashboard} onClick={() => setIsOnboarded(true)}>
-        Continue
-      </Link>
+      <SpendCard name={'Annual payments'} amount={payments.annual} />
+      <SpendCard name={'Spending budget'} amount={budget} />
+      <NextLink
+        className={classes.button}
+        to={Routes.Dashboard}
+        onClick={() => setIsOnboarded(true)}
+      />
     </Content>
   );
 };
