@@ -11,7 +11,7 @@ const useStyles = createUseStyles({
     left: 18,
   },
   tooltip: {
-    background: '#89EFBE',
+    background: '#EFD089',
     padding: [18, 18, 18, 70],
     borderRadius: 20,
     position: 'relative',
@@ -27,7 +27,13 @@ const useStyles = createUseStyles({
       height: 0,
       borderLeft: '7px solid transparent',
       borderRight: '7px solid transparent',
-      borderBottom: '9px solid #89EFBE',
+      borderBottom: '9px solid #EFD089',
+    },
+    '&.positive': {
+      background: '#89EFBE',
+      '&::after': {
+        borderBottom: '9px solid #89EFBE',
+      },
     },
   },
 });
@@ -36,15 +42,17 @@ const Tooltip = ({
   left,
   children,
   className,
+  positive = true,
 }: {
   className?: string;
   left: number;
   children: React.ReactNode;
+  positive?: boolean;
 }) => {
   const classes = useStyles({ progress: left });
   return (
-    <div className={classNames(classes.tooltip, className)}>
-      <div className={classes.thumb}>👍</div>
+    <div className={classNames(classes.tooltip, className, { positive })}>
+      <div className={classes.thumb}>{positive ? '👍' : '😞'}</div>
       {children}
     </div>
   );

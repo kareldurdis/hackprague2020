@@ -17,13 +17,16 @@ const useStyles = createUseStyles({
   },
   name: {
     fontWeight: 'bold',
+    fontSize: 18,
   },
   price: {
     color: '#818181',
     fontWeight: 'bold',
+    fontSize: 18,
   },
   green: {
     color: 'rgb(88, 201, 74)',
+    fontSize: 24,
   },
 });
 
