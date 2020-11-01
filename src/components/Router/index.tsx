@@ -11,7 +11,6 @@ import DreamDetail from '../../pages/Dream/detail';
 import { DreamsContextProvider } from '../../context/dreams';
 import EmergencyIntro from '../../pages/Onboarding/steps/EmergencyIntro';
 import EmergencyAdd from '../../pages/Onboarding/steps/emergencyAdd';
-import { EmergencyFundContextProvider } from '../../context/emergencyFund';
 import Introduction from '../../pages/Onboarding/steps/Introduction';
 import WeeklyReview from '../../pages/WeeklyReview';
 import SummaryPage from '../../pages/Onboarding/steps/SummaryPage';
