@@ -3,6 +3,7 @@ import { createUseStyles } from 'react-jss';
 import { useState } from 'react';
 import { useRef } from 'react';
 import { Routes } from './Router/routes';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = createUseStyles({
   button: {
@@ -37,16 +38,11 @@ const useStyles = createUseStyles({
   },
 });
 
-interface Props {
-  onNewTransaction: () => void;
-  onWeeklyReview: () => void;
-  onMonthlyReview: () => void;
-}
-
-const HackButton = ({ onMonthlyReview, onNewTransaction, onWeeklyReview }: Props) => {
+const HackButton = () => {
   const classes = useStyles();
   const [showOptions, setOptionsVisibiliy] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const history = useHistory();
 
   React.useEffect(() => {
     if (!ref?.current || !showOptions) {
@@ -73,13 +69,13 @@ const HackButton = ({ onMonthlyReview, onNewTransaction, onWeeklyReview }: Props
       {showOptions ? (
         <ul className={classes.ul}>
           <li>
-            <button onClick={onMonthlyReview}>Add transaction</button>
+            <button onClick={() => history.push(Routes.Dashboard)}>Dashboard</button>
           </li>
           <li>
-            <button onClick={onNewTransaction}>Weekly review</button>
+            <button onClick={() => history.push(Routes.WeeklyReview)}>Weekly review</button>
           </li>
           <li>
-            <button onClick={onWeeklyReview}>Monthly review</button>
+            <button onClick={() => history.push(Routes.MonthlyReview)}>Monthly review</button>
           </li>
           <li>
             <button
@@ -88,7 +84,7 @@ const HackButton = ({ onMonthlyReview, onNewTransaction, onWeeklyReview }: Props
                 window.location.replace(Routes.Homepage);
               }}
             >
-              Clear
+              Start over
             </button>
           </li>
         </ul>

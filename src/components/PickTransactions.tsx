@@ -1,129 +1,133 @@
-import { Checkbox, useCheckboxState } from 'reakit/Checkbox';
-import React, { useEffect, useState } from 'react';
-import Content from './Content';
-import { Input } from 'reakit/Input';
+import { useCheckboxState } from 'reakit/Checkbox';
+import React from 'react';
 import { createUseStyles } from 'react-jss';
-import BackLink from './BackLink';
-import { Routes } from './Router/routes';
 import { formatEuro, getSpendings } from '../utils';
 import { Transaction } from '../__mocks__/transactions';
+import NextLink from './NextLink';
+import Checkbox from './Checkbox';
 
 const useStyles = createUseStyles({
   ul: {
+    borderTop: '1px solid #1A5BEF',
+    borderBottom: '1px solid #1A5BEF',
+    margin: 0,
+    padding: [0, 10],
+    marginBottom: 32,
+    overflow: 'auto',
+    maxHeight: '30vh',
     '& li': {
       listStyle: 'none',
+      '&:last-child label': {
+        borderBottom: 'none',
+      },
     },
   },
-  popup: {
-    position: 'absolute',
-    left: 0,
-    top: 0,
+  h1: {
+    fontSize: 46,
+    lineHeight: '48px',
+    color: '#1A5BEF',
+    fontWeight: 700,
+    marginBottom: 12,
+  },
+  h2: {
+    fontSize: 18,
+    color: '#1A5BEF',
+    marginBottom: 12,
+  },
+  p: {
+    fontSize: 18,
+    fontWeight: 500,
+    color: '#202020',
+    marginTop: 10,
+    marginBottom: 47,
+  },
+  checkbox: {
+    width: 25,
+    height: 25,
+    borderRadius: 5,
+  },
+  labelContainer: {
+    display: 'flex',
+    flexDirection: 'row',
     width: '100%',
-    height: '100%',
-    background: 'white',
+    justifyContent: 'space-between',
+  },
+  date: {
+    fontSize: 14,
+    fontWeight: 500,
+    color: 'rgba(28, 28, 28, 0.5)',
+  },
+  description: {
+    color: 'rgba(28, 28, 28, 1)',
+    fontSize: 16,
+    fontWeight: 900,
+  },
+  amount: {
+    color: 'rgba(28, 28, 28, 0.55)',
+    fontSize: 16,
+    fontWeight: 600,
+    alignSelf: 'center',
+    paddingLeft: 10,
+  },
+  left: {
+    flexDirection: 'column',
+    marginLeft: 16,
+  },
+  label: {
+    display: 'flex',
+    flexDirection: 'row',
+    padding: [10, 12],
+    borderBottom: '1px solid rgba(0,0,0,0.1)',
   },
 });
 
 interface Props {
-  title: string;
+  title?: string;
   onPick: (transactions: Transaction[]) => void;
+  nextRoute: string;
+  transactions: Transaction[];
 }
 
-export const PickTransactions = ({ title, onPick }: Props) => {
+export const PickTransactions = ({ onPick, nextRoute, transactions }: Props) => {
   const classes = useStyles();
   const checkbox = useCheckboxState({ state: [] });
-  const [showPopup, setPopupVisibility] = useState(false);
-  const [search, setSearch] = useState('');
-
-  useEffect(() => {
-    setSearch('');
-  }, [showPopup]);
 
   // Get only negative transactions
-  const spendings = getSpendings();
+  const spendings = getSpendings(transactions);
 
   const picked = (checkbox.state as string[]).map(
     (id) => spendings.find((item) => item.id === id) as Transaction
   );
 
-  const formatLabel = ({ amount, payee, description }: Transaction) => {
-    return `${formatEuro(amount)} ${payee}: ${description}`;
-  };
+  const formatDate = (date: Date) => `${date.getMonth()}/${date.getDate()}`;
 
   return (
-    <Content>
-      <nav>
-        <BackLink to={Routes.Introduction} />
-      </nav>
-      <h1>{title} payments</h1>
-
-      <div>
-        Choices:
-        <ul>
-          {picked.map((transaction) => {
-            return (
-              <li key={transaction.id}>
-                {formatLabel(transaction)}
-                <button
-                  onClick={() => {
-                    checkbox.setState((value) =>
-                      (value as string[]).filter((item) => item !== transaction.id)
-                    );
-                  }}
-                >
-                  Remove
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-
-      <h2>Suggestions</h2>
+    <>
+      <h2 className={classes.h2}>Choose transactions</h2>
       <ul className={classes.ul}>
-        {spendings.slice(0, 5).map((transaction) => {
+        {spendings.map((transaction) => {
           return (
             <li key={transaction.id}>
-              <label>
-                <Checkbox {...checkbox} value={transaction.id} />
-                {formatLabel(transaction)}
+              <label className={classes.label}>
+                <Checkbox
+                  checkbox={checkbox}
+                  className={classes.checkbox}
+                  value={transaction.id}
+                  checked={(checkbox.state as string[]).includes(transaction.id)}
+                />
+                <div className={classes.labelContainer}>
+                  <div className={classes.left}>
+                    <div className={classes.date}>{formatDate(transaction.date)}</div>
+                    <div className={classes.description}>{transaction.description}</div>
+                  </div>
+                  <div className={classes.amount}>{formatEuro(transaction.amount)}</div>
+                </div>
               </label>
             </li>
           );
         })}
       </ul>
-      <button onClick={() => setPopupVisibility(true)}>More</button>
-
-      <button onClick={() => onPick(picked)}>Continue</button>
-
-      {showPopup ? (
-        <div className={classes.popup}>
-          <Content>
-            <Input
-              placeholder="Hledat"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-
-            <ul className={classes.ul}>
-              {(search
-                ? spendings.filter((t) => t.payee.toLowerCase().includes(search.toLowerCase()))
-                : spendings
-              ).map((transaction) => {
-                return (
-                  <li key={transaction.id}>
-                    <label>
-                      <Checkbox {...checkbox} value={transaction.id} />
-                      {formatLabel(transaction)}
-                    </label>
-                  </li>
-                );
-              })}
-            </ul>
-            <button onClick={() => setPopupVisibility(false)}>Done</button>
-          </Content>
-        </div>
-      ) : null}
-    </Content>
+      <NextLink to={nextRoute} onClick={() => onPick(picked)} />
+    </>
   );
 };
